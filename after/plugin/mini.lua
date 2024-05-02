@@ -11,4 +11,4 @@ require("mini.statusline").setup({
 require("mini.comment").setup({})
 
 -- mini.nvim surround module
-require("mini.surround").setup({})
+-- require("mini.surround").setup({})

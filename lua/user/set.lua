@@ -20,11 +20,16 @@ opt.smartindent = true
 -- Enable break indent
 opt.breakindent = true
 
+local home = os.getenv("HOME")
 -- History settings
 opt.undofile = true
-opt.undodir = os.getenv("HOME") .. "/.local/state/nvim"
 opt.swapfile = true
-opt.swapfile = true
+opt.backup = true
+opt.writebackup = true
+opt.undodir = home .. "/.local/state/nvim"
+-- https://stackoverflow.com/a/1625850
+opt.backupdir = home .. "/.local/share/Trash/nvim//,."
+opt.directory = home .. "/.local/share/Trash/nvim//,."
 
 -- Case-insensitive searching UNLESS \C or capital in search
 opt.ignorecase = true
