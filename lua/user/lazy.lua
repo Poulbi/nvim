@@ -43,6 +43,42 @@ require("lazy").setup({
         -- kind icons
         "onsails/lspkind.nvim",
 	},
+
+    {
+        "gbprod/nord.nvim",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            require("nord").setup({
+                transparent = false,
+                terminal_colors = true, -- `:terminal`
+                diff = { mode = "bg" },
+                borders = true,
+                -- values : [bg|fg|none]
+                errors = { mode = "bg" },
+                -- values : [vim|vscode]
+                search = { theme = "vim" },
+                styles = {
+                    -- `:help nvim_set_hl`
+                    comments = { italic = true },
+                    keywords = { bold = true },
+                    functions = { bold = true },
+                    variables = { bold = true },
+                    -- To customize lualine/bufferline
+                    bufferline = {
+                        current = {},
+                        modified = { italic = true },
+                    },
+                },
+            })
+            vim.cmd.colorscheme("nord")
+        end,
+    },
+    install = {
+        colorscheme = { "nord" },
+    },
+
+
 	-- Adds git related signs to the gutter, as well as utilities for managing changes
 	"lewis6991/gitsigns.nvim",
 
