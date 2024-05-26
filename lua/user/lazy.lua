@@ -52,9 +52,6 @@ require("lazy").setup({
     -- integration with tmux keybinds
     "christoomey/vim-tmux-navigator",
 
-    -- nord color theme
-    "shaunsingh/nord.nvim",
-
     -- auto close brackets
     "m4xshen/autoclose.nvim",
 

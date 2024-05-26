@@ -27,5 +27,3 @@ autocmd({ "BufWritePre" }, {
 		vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
 	end,
 })
-
-vim.cmd("colorscheme nord")

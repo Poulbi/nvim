@@ -2,7 +2,7 @@ local map = vim.keymap.set
 
 -- Leader
 vim.g.mapleader = " "
-vim.g.maplocalleader = ";"
+vim.g.maplocalleader = ","
 
 -- Move text easilly
 map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selected text up" })
