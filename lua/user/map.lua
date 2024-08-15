@@ -18,18 +18,18 @@ map("n", "J", "mzJ`z", { desc = "Move up next line with space in between" })
 map("x", "<leader>p", [["_dP]], { desc = "Paste while keeping the registry" })
 
 -- moving
-vim.keymap.set("i", "<C-a>", "<C-o>I", { noremap = true })
-vim.keymap.set("i", "<C-e>", "<C-o>A", { noremap = true })
-vim.keymap.set("i", "<C-k>", "<C-o>D", { noremap = true })
+map("i", "<C-a>", "<C-o>I", { noremap = true })
+map("i", "<C-e>", "<C-o>A", { noremap = true })
+map("i", "<C-k>", "<C-o>D", { noremap = true })
 
 -- buffers
-vim.keymap.set("n", "gb", "<cmd>buffers<cr>:buffer<Space>", { noremap = true })
-vim.keymap.set("n", "<Leader>q", "<cmd>q!<cr>", { noremap = true })
-vim.keymap.set("n", "<Leader>Q", "<cmd>qa!<cr>", { noremap = true })
+map("n", "gb", "<cmd>buffers<cr>:buffer<Space>", { noremap = true })
+map("n", "<Leader>q", "<cmd>q!<cr>", { noremap = true })
+map("n", "<Leader>Q", "<cmd>qa!<cr>", { noremap = true })
 -- close all except focused buffer
-vim.keymap.set("n", "<leader>1", "<cmd>%bd|e#<cr>", { noremap = true })
+map("n", "<leader>1", "<cmd>%bd|e#<cr>", { noremap = true })
 -- next tab
-vim.keymap.set("n", "+", "<cmd>tabe .<cr>", { noremap = true })
+map("n", "+", "<cmd>tabe .<cr>", { noremap = true })
 
 -- better indenting
 map("v", "<", "<gv")
@@ -43,11 +43,11 @@ map({ "n", "v" }, "<leader>P", [["+p]])
 map({ "n", "v" }, "<leader>d", [["_d]])
 
 -- templates
-vim.keymap.set("n", "<LocalLeader>rt", ":-1r " .. vim.fn.stdpath("config") .. "/templates", { noremap = true })
+map("n", "<LocalLeader>rt", ":-1r " .. vim.fn.stdpath("config") .. "/templates", { noremap = true })
 
 -- hide all
 local s = { hidden_all = 0 }
-vim.keymap.set("n", "<C-h>", function()
+map("n", "<C-h>", function()
 	s.hidden_all = 1 - s.hidden_all
 	local opt = s.hidden_all == 0
 	vim.opt.showmode = opt
@@ -60,17 +60,17 @@ vim.keymap.set("n", "<C-h>", function()
 end, { noremap = true })
 
 -- write
-vim.keymap.set("n", "<Leader>w", "<cmd>write<cr>", { noremap = true })
-vim.keymap.set("n", "<Leader>W", "<cmd>write!<cr>", { noremap = true })
-vim.keymap.set("n", "<Leader>e", "<cmd>edit<cr>", { noremap = true })
-vim.keymap.set("n", "<LocalLeader>s", function()
+map("n", "<Leader>w", "<cmd>write<cr>", { noremap = true })
+map("n", "<Leader>W", "<cmd>write!<cr>", { noremap = true })
+map("n", "<Leader>e", "<cmd>edit<cr>", { noremap = true })
+map("n", "<LocalLeader>s", function()
 	vim.cmd.source()
 	print("sourced.")
 end, { noremap = true })
 
 -- Lazy
-vim.keymap.set("n", "<Leader>P", "<cmd>Lazy<cr>", { noremap = true })
+map("n", "<Leader>P", "<cmd>Lazy<cr>", { noremap = true })
 
 -- spelling
-vim.keymap.set("n", "<C-s>s", "<cmd>setlocal spell!<cr>", { noremap = true })
-vim.keymap.set("n", "<C-s>g", "z=1<cr><cr>", { noremap = true })
+map("n", "<C-s>s", "<cmd>setlocal spell!<cr>", { noremap = true })
+map("n", "<C-s>g", "z=1<cr><cr>", { noremap = true })
