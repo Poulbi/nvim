@@ -42,13 +42,12 @@ map({ "n", "v" }, "<leader>P", [["+p]])
 
 map({ "n", "v" }, "<leader>d", [["_d]])
 
-
 -- templates
 vim.keymap.set("n", "<LocalLeader>rt", ":-1r " .. vim.fn.stdpath("config") .. "/templates", { noremap = true })
 
 -- hide all
-local s = {hidden_all = 0}
-vim.keymap.set("n", "<C-h>", function ()
+local s = { hidden_all = 0 }
+vim.keymap.set("n", "<C-h>", function()
 	s.hidden_all = 1 - s.hidden_all
 	local opt = s.hidden_all == 0
 	vim.opt.showmode = opt
@@ -64,7 +63,7 @@ end, { noremap = true })
 vim.keymap.set("n", "<Leader>w", "<cmd>write<cr>", { noremap = true })
 vim.keymap.set("n", "<Leader>W", "<cmd>write!<cr>", { noremap = true })
 vim.keymap.set("n", "<Leader>e", "<cmd>edit<cr>", { noremap = true })
-vim.keymap.set("n", "<LocalLeader>s", function ()
+vim.keymap.set("n", "<LocalLeader>s", function()
 	vim.cmd.source()
 	print("sourced.")
 end, { noremap = true })
@@ -75,4 +74,3 @@ vim.keymap.set("n", "<Leader>P", "<cmd>Lazy<cr>", { noremap = true })
 -- spelling
 vim.keymap.set("n", "<C-s>s", "<cmd>setlocal spell!<cr>", { noremap = true })
 vim.keymap.set("n", "<C-s>g", "z=1<cr><cr>", { noremap = true })
-

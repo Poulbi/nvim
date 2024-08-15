@@ -14,7 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 
 -- plugins installation and configuration
 require("lazy").setup({
-    -- lsp setup
+	-- lsp setup
 	{
 		-- LSP Support
 		"neovim/nvim-lspconfig",
@@ -32,64 +32,61 @@ require("lazy").setup({
 		"dcampos/nvim-snippy",
 		-- basic snippet's
 		"honza/vim-snippets",
-        -- cmp for autocompletion
-        "hrsh7th/nvim-cmp",
-        -- cmp nvim-lsp plugin
-        "hrsh7th/cmp-nvim-lsp",
-        -- cmp snippy support
-        "dcampos/cmp-snippy",
-        -- path comletion
-        "hrsh7th/cmp-path",
-        -- kind icons
-        "onsails/lspkind.nvim",
+		-- cmp for autocompletion
+		"hrsh7th/nvim-cmp",
+		-- cmp nvim-lsp plugin
+		"hrsh7th/cmp-nvim-lsp",
+		-- cmp snippy support
+		"dcampos/cmp-snippy",
+		-- path comletion
+		"hrsh7th/cmp-path",
+		-- kind icons
+		"onsails/lspkind.nvim",
+		-- Minimal neovim modules for a lot of things
+		"echasnovski/mini.nvim",
+		-- Adds git related signs to the gutter, as well as utilities for managing changes
+		"lewis6991/gitsigns.nvim",
+		-- better ntrw
+		"tpope/vim-vinegar",
+		-- integration with tmux keybinds
+		"christoomey/vim-tmux-navigator",
+		-- auto close brackets
+		"m4xshen/autoclose.nvim",
 	},
 
-    {
-        "gbprod/nord.nvim",
-        lazy = false,
-        priority = 1000,
-        config = function()
-            require("nord").setup({
-                transparent = false,
-                terminal_colors = true, -- `:terminal`
-                diff = { mode = "bg" },
-                borders = true,
-                -- values : [bg|fg|none]
-                errors = { mode = "bg" },
-                -- values : [vim|vscode]
-                search = { theme = "vim" },
-                styles = {
-                    -- `:help nvim_set_hl`
-                    comments = { italic = true },
-                    keywords = { bold = true },
-                    functions = { bold = true },
-                    variables = { bold = true },
-                    -- To customize lualine/bufferline
-                    bufferline = {
-                        current = {},
-                        modified = { italic = true },
-                    },
-                },
-            })
-            vim.cmd.colorscheme("nord")
-        end,
-    },
-    install = {
-        colorscheme = { "nord" },
-    },
-
-
-	-- Adds git related signs to the gutter, as well as utilities for managing changes
-	"lewis6991/gitsigns.nvim",
-
-    -- better ntrw
-    "tpope/vim-vinegar",
-
-    -- integration with tmux keybinds
-    "christoomey/vim-tmux-navigator",
-
-    -- auto close brackets
-    "m4xshen/autoclose.nvim",
+	{
+		"gbprod/nord.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("nord").setup({
+				transparent = false,
+				terminal_colors = true, -- `:terminal`
+				diff = { mode = "bg" },
+				borders = true,
+				-- values : [bg|fg|none]
+				errors = { mode = "bg" },
+				-- values : [vim|vscode]
+				search = { theme = "vim" },
+				styles = {
+					-- `:help nvim_set_hl`
+					comments = { italic = true },
+					keywords = { bold = true },
+					functions = { bold = true },
+					variables = { bold = true },
+					-- To customize lualine/bufferline
+					bufferline = {
+						current = {},
+						modified = { italic = true },
+					},
+				},
+			})
+			vim.cmd.colorscheme("nord")
+		end,
+	},
+	install = {
+		colorscheme = { "nord" },
+	},
 
 	-- Fuzzy Finder (files, lsp, etc)
 	{
@@ -118,9 +115,6 @@ require("lazy").setup({
 			requires = { "nvim-lua/plenary.nvim", lazy = true },
 		},
 	},
-
-	-- Minimal neovim modules for a lot of things
-	{ "echasnovski/mini.nvim" },
 }, {
 	performance = {
 		rtp = {

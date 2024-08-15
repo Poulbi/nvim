@@ -90,7 +90,7 @@ opt.formatoptions = "cqrnj"
 
 -- Get the current working directory, replace the $HOME portion of the path with ~,
 -- and extract the last three directories
-local cwd = vim.fn.getcwd():gsub(os.getenv('HOME'), '~')
+local cwd = vim.fn.getcwd():gsub(os.getenv("HOME"), "~")
 local last_dirs = string.match(cwd, "[^/]+/[^/]+/[^/]+/?$")
 if last_dirs then
 	opt.titlestring = last_dirs .. " -> %t"

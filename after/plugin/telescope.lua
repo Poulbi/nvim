@@ -1,10 +1,11 @@
-require('telescope').setup({
+require("telescope").setup({
 	defaults = {
 		path_display = {
 			shorten = {
-				len = 3, exclude = {1, -1}
+				len = 3,
+				exclude = { 1, -1 },
 			},
-			truncate = true
+			truncate = true,
 		},
 		dynamic_preview_title = true,
 	},
@@ -21,11 +22,11 @@ require('telescope').setup({
 	},
 })
 
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files)
-vim.keymap.set('n', '<leader><leader>', builtin.buffers)
-vim.keymap.set('n', '<leader>fg', builtin.git_files)
-vim.keymap.set('n', '<leader>fw', builtin.live_grep)
+local builtin = require("telescope.builtin")
+vim.keymap.set("n", "<leader>ff", builtin.find_files)
+vim.keymap.set("n", "<leader><leader>", builtin.buffers)
+vim.keymap.set("n", "<leader>fg", builtin.git_files)
+vim.keymap.set("n", "<leader>fw", builtin.live_grep)
 vim.keymap.set("n", "<C-p>", "<cmd>Telescope git_files<cr>", { desc = "Find git files" })
 vim.keymap.set("n", "<leader>vh", builtin.help_tags, { desc = "Find help tags" })
 

@@ -1,6 +1,7 @@
 require("user.set")
 require("user.map")
 require("user.lazy")
+require("user.lsp")
 
 local autocmd = vim.api.nvim_create_autocmd
 
@@ -17,7 +18,7 @@ autocmd("TextYankPost", {
 })
 
 -- [[ Auto create parent directory if it doesn't exist ]]
-autocmd({ "BufWritePre" }, {
+autocmd("BufWritePre", {
 	group = augroup("auto_create_dir"),
 	callback = function(event)
 		if event.match:match("^%w%w+://") then
@@ -25,5 +26,12 @@ autocmd({ "BufWritePre" }, {
 		end
 		local file = vim.loop.fs_realpath(event.match) or event.match
 		vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
+	end,
+})
+
+autocmd("BufWritePre", {
+	pattern = "*",
+	callback = function(args)
+		require("conform").format({ bufnr = args.buf })
 	end,
 })
