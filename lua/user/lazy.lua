@@ -14,57 +14,59 @@ vim.opt.rtp:prepend(lazypath)
 
 -- plugins installation and configuration
 require("lazy").setup({
-    -- lsp setup
-    {
-        -- LSP Support
-        "neovim/nvim-lspconfig",
-        -- lsp download manager
-        "williamboman/mason.nvim",
-        -- automatic lsp setup
-        "williamboman/mason-lspconfig.nvim",
-        -- additional formater support
-        "stevearc/conform.nvim",
-        -- additional linter support
-        "mfussenegger/nvim-lint",
-        -- mason autoinstaller for formatter's and linter's
-        "WhoIsSethDaniel/mason-tool-installer.nvim",
-        -- minimal snippet's support
-        "dcampos/nvim-snippy",
-        -- basic snippet's
-        "honza/vim-snippets",
-        -- cmp for autocompletion
-        { 
-            "hrsh7th/nvim-cmp", 
-            dependencies = {
-                -- cmp nvim-lsp plugin
-                "hrsh7th/cmp-nvim-lsp",
-                -- path comletion
-                "hrsh7th/cmp-path",
-                -- cmp snippy support
-                "dcampos/cmp-snippy",
-            },
-        },
-        -- kind icons
-        "onsails/lspkind.nvim",
-        -- Minimal neovim modules for a lot of things
-        "echasnovski/mini.nvim",
-        -- Adds git related signs to the gutter, as well as utilities for managing changes
-        "lewis6991/gitsigns.nvim",
-        -- better ntrw
-        "tpope/vim-vinegar",
-        -- integration with tmux keybinds
-        "christoomey/vim-tmux-navigator",
-        -- auto close brackets
-        "m4xshen/autoclose.nvim",
-    },
+	-- lsp setup
+	{
+		-- LSP Support
+		"neovim/nvim-lspconfig",
+		-- lsp download manager
+		"williamboman/mason.nvim",
+		-- automatic lsp setup
+		"williamboman/mason-lspconfig.nvim",
+		-- additional formater support
+		"stevearc/conform.nvim",
+		-- additional linter support
+		"mfussenegger/nvim-lint",
+		-- mason autoinstaller for formatter's and linter's
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		-- minimal snippet's support
+		"dcampos/nvim-snippy",
+		-- basic snippet's
+		"honza/vim-snippets",
+		-- cmp for autocompletion
+		{
+			"hrsh7th/nvim-cmp",
+			dependencies = {
+				-- cmp nvim-lsp plugin
+				"hrsh7th/cmp-nvim-lsp",
+				-- path comletion
+				"hrsh7th/cmp-path",
+				-- cmp snippy support
+				"dcampos/cmp-snippy",
+			},
+		},
+		-- kind icons
+		"onsails/lspkind.nvim",
+		-- Minimal neovim modules for a lot of things
+		"echasnovski/mini.nvim",
+		-- Adds git related signs to the gutter, as well as utilities for managing changes
+		"lewis6991/gitsigns.nvim",
+		-- better ntrw
+		"tpope/vim-vinegar",
+		-- integration with tmux keybinds
+		"christoomey/vim-tmux-navigator",
+		-- auto close brackets
+		"m4xshen/autoclose.nvim",
+	},
 
-    {
-        "dstein64/vim-startuptime", 
-        cmd = "StartupTime",
-        init = function()
-            vim.g.startuptime_tries = 10
-        end,
-    },
+    "mg979/vim-visual-multi",
+
+	{
+		"dstein64/vim-startuptime",
+		cmd = "StartupTime",
+		init = function()
+			vim.g.startuptime_tries = 10
+		end,
+	},
 
 	{
 		"gbprod/nord.nvim",
@@ -126,7 +128,7 @@ require("lazy").setup({
 	},
 }, {
 
-    -- lazy options
+	-- lazy options
 	performance = {
 		rtp = {
 			disabled_plugins = {
@@ -141,6 +143,6 @@ require("lazy").setup({
 	install = {
 		colorscheme = { "nord" },
 	},
-    checker = { enabled = true },
-    -- defaults = {lazy = true}, 
+	checker = { enabled = true },
+	-- defaults = {lazy = true},
 })
