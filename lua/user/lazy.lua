@@ -143,6 +143,6 @@ require("lazy").setup({
 	install = {
 		colorscheme = { "nord" },
 	},
-	checker = { enabled = true },
+	checker = { enabled = false },
 	-- defaults = {lazy = true},
 })
