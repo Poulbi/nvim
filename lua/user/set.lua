@@ -3,6 +3,7 @@ local opt = vim.opt
 -- Don't highlight on search
 opt.hlsearch = false
 opt.incsearch = true
+opt.conceallevel = 2
 
 -- Enable line numbers by default
 opt.number = true
@@ -79,8 +80,8 @@ opt.backspace = "indent,eol,start"
 
 opt.laststatus = 2
 opt.history = 200
-opt.encoding = "utf-8"
-opt.fileencoding = "utf-8"
+-- opt.encoding = "utf-8"
+-- opt.fileencoding = "utf-8"
 
 opt.smartindent = true
 opt.scrolloff = 8

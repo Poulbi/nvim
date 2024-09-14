@@ -42,7 +42,9 @@ require("lazy").setup({
 				"hrsh7th/cmp-path",
 				-- cmp snippy support
 				"dcampos/cmp-snippy",
+				"hrsh7th/cmp-calc",
 			},
+			event = { "InsertEnter", "CmdlineEnter" },
 		},
 		-- kind icons
 		"onsails/lspkind.nvim",
@@ -53,12 +55,43 @@ require("lazy").setup({
 		-- better ntrw
 		"tpope/vim-vinegar",
 		-- integration with tmux keybinds
-		"christoomey/vim-tmux-navigator",
+		{
+			"christoomey/vim-tmux-navigator",
+			cmd = {
+				"TmuxNavigateLeft",
+				"TmuxNavigateDown",
+				"TmuxNavigateUp",
+				"TmuxNavigateRight",
+				"TmuxNavigatePrevious",
+			},
+			keys = {
+				{ "<M-h>", "<cmd>TmuxNavigateLeft<cr>" },
+				{ "<M-j>", "<cmd>TmuxNavigateDown<cr>" },
+				{ "<M-k>", "<cmd>TmuxNavigateUp<cr>" },
+				{ "<M-l>", "<cmd>TmuxNavigateRight<cr>" },
+				{ "<M-\\>", "<cmd>TmuxNavigatePrevious<cr>" },
+			},
+		},
 		-- auto close brackets
 		"m4xshen/autoclose.nvim",
 	},
+	{
+		"ray-x/go.nvim",
+		dependencies = { -- optional packages
+			"ray-x/guihua.lua",
+			"neovim/nvim-lspconfig",
+			"nvim-treesitter/nvim-treesitter",
+		},
+		config = function()
+			require("go").setup()
+		end,
+		event = { "CmdlineEnter" },
+		ft = { "go", "gomod" },
+		build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
+	},
 
-    "mg979/vim-visual-multi",
+	"mg979/vim-visual-multi",
+	"jghauser/follow-md-links.nvim",
 
 	{
 		"dstein64/vim-startuptime",

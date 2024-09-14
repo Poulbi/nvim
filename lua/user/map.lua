@@ -4,6 +4,11 @@ local map = vim.keymap.set
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
+-- open config
+map("n", " c", function()
+	vim.cmd("cd ~/.config/nvim")
+	vim.cmd("e " .. "init.lua")
+end, { desc = "Open neovim config file" })
 -- Move text easilly
 map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selected text up" })
 map("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selected text down" })
@@ -23,6 +28,8 @@ map("i", "<C-e>", "<C-o>A", { noremap = true })
 map("i", "<C-k>", "<C-o>D", { noremap = true })
 
 -- buffers
+map("n", "<leader>sp", "<cmd>sp<cr>", { desc = "Open horizontal split" })
+map("n", "<leader>vs", "<cmd>vs<cr>", { desc = "Open vertical split" })
 map("n", "gb", "<cmd>buffers<cr>:buffer<Space>", { noremap = true })
 map("n", "<Leader>q", "<cmd>q!<cr>", { noremap = true })
 map("n", "<Leader>Q", "<cmd>qa!<cr>", { noremap = true })
