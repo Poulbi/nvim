@@ -24,12 +24,11 @@ require("telescope").setup({
 })
 
 local builtin = require("telescope.builtin")
-map("n", " ff", builtin.find_files)
-map("n", "  ", builtin.buffers)
-map("n", " fg", builtin.git_files)
-map("n", " fw", builtin.live_grep)
-map("n", "<C-p>", "<cmd>Telescope git_files<cr>", { desc = "Find git files" })
-map("n", " vh", builtin.help_tags, { desc = "Find help tags" })
+map("n", " tf", builtin.find_files)
+map("n", " tb", builtin.buffers)
+map("n", "<C-p>", builtin.git_files)
+map("n", " tw", builtin.live_grep)
+map("n", " th", builtin.help_tags, { desc = "Find help tags" })
 
 -- symbols
 map("n", " tse", "<cmd>lua require'telescope.builtin'.symbols{ sources = {'emoji', 'gitmoji'} }<CR>")

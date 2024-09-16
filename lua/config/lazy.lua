@@ -54,6 +54,7 @@ require("lazy").setup({
 		"lewis6991/gitsigns.nvim",
 		-- better ntrw
 		"tpope/vim-vinegar",
+		"tpope/vim-eunuch",
 		-- integration with tmux keybinds
 		{
 			"christoomey/vim-tmux-navigator",
@@ -138,6 +139,7 @@ require("lazy").setup({
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope-ui-select.nvim",
+			"nvim-telescope/telescope-symbols.nvim",
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
 				build = "make",
@@ -175,6 +177,11 @@ require("lazy").setup({
 	},
 	install = {
 		colorscheme = { "nord" },
+		missing = false,
+	},
+	change_detection = {
+		enabled = false,
+		notify = false,
 	},
 	checker = { enabled = false },
 	-- defaults = {lazy = true},

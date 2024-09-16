@@ -1,14 +1,15 @@
 -- [[ Keybinds ]]
 local map = vim.keymap.set
-map("n", " a", vim.lsp.buf.code_action)
+map("n", " la", vim.lsp.buf.code_action)
 map("n", "gd", vim.lsp.buf.definition)
-map("n", " r", vim.lsp.buf.rename)
-map("n", " i", vim.lsp.buf.implementation)
-map("n", " sh", vim.lsp.buf.signature_help)
-map("n", " t", vim.lsp.buf.typehierarchy)
-map("n", " r", vim.lsp.buf.references)
-map("n", " sl", vim.lsp.buf.document_symbol)
-map("n", " td", vim.lsp.buf.type_definition)
+map("n", " lr", vim.lsp.buf.rename)
+map("n", " li", vim.lsp.buf.implementation)
+map("n", " lh", vim.lsp.buf.signature_help)
+map("n", " lt", vim.lsp.buf.typehierarchy)
+map("n", " lr", vim.lsp.buf.references)
+map("n", " ls", vim.lsp.buf.document_symbol)
+map("n", " ld", vim.lsp.buf.type_definition)
+map("n", " lq", vim.diagnostic.setqflist)
 
 -- [[ LSP Setups ]]
 local lspconfig = require("lspconfig")
@@ -51,10 +52,13 @@ require("lspconfig").lua_ls.setup({
 })
 
 -- [[ nvim cmp ]]
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
+require("cmp_nvim_lsp").default_capabilities()
 local cmp = require("cmp")
 local lspkind = require("lspkind")
 cmp.setup({
+	completion = {
+		autocomplete = false,
+	},
 	snippet = {
 		expand = function(args)
 			require("snippy").expand_snippet(args.body)
