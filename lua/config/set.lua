@@ -36,10 +36,6 @@ opt.directory = home .. "/.local/share/Trash/nvim//,."
 opt.ignorecase = true
 opt.smartcase = true
 
--- Keep signcolumn on by default
-print(vim.fs.find(".git", {}))
-opt.signcolumn = "yes"
-
 -- Decrease update time
 opt.updatetime = 50
 opt.timeoutlen = 300

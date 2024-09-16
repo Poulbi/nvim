@@ -81,3 +81,15 @@ autocmd(
 		desc = "Enable spell checking for certain file types",
 	}
 )
+
+autocmd({ "BufNewFile", "BufRead" }, {
+	pattern = "*",
+	callback = function()
+		local output = vim.fn.system("git rev-parse --is-inside-work-tree")
+		if output == "true\n" then
+			vim.opt.signcolumn = "yes"
+		else
+			vim.opt.signcolumn = "no"
+		end
+	end,
+})
