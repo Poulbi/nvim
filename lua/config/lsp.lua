@@ -14,8 +14,9 @@ map("n", " lq", vim.diagnostic.setqflist)
 -- [[ LSP Setups ]]
 local lspconfig = require("lspconfig")
 
--- go
 lspconfig.gopls.setup({})
+lspconfig.clangd.setup({})
+lspconfig.emmet_ls.setup({})
 
 -- lua
 -- with neovim support
@@ -54,14 +55,19 @@ require("lspconfig").lua_ls.setup({
 -- [[ nvim cmp ]]
 require("cmp_nvim_lsp").default_capabilities()
 local cmp = require("cmp")
+local context = require("cmp.config.context")
 local lspkind = require("lspkind")
 cmp.setup({
-	completion = {
-		autocomplete = false,
-	},
+	enabled = function()
+		if context.in_treesitter_capture("comment") == true or context.in_syntax_group("Comment") then
+			return false
+		else
+			return true
+		end
+	end,
 	snippet = {
 		expand = function(args)
-			require("snippy").expand_snippet(args.body)
+			require("luasnip").lsp_expand(args.body)
 		end,
 	},
 	window = {
@@ -86,11 +92,14 @@ cmp.setup({
 		}),
 	}),
 	sources = cmp.config.sources({
-		{ name = "nvim_lsp" },
-		-- { name = "snippy" },
+		{
+			name = "nvim_lsp",
+			keyword_length = 3,
+		},
+		{ name = "luasnip" },
 	}, {
-		{ name = "buffer" },
-		{ name = "calc" },
+		-- { name = "buffer", max_item_count = 5 },
+		{ name = "path", max_item_count = 5 },
 	}),
 	formatting = {
 		format = lspkind.cmp_format({

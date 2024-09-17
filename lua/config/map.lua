@@ -25,7 +25,6 @@ map("x", "<leader>p", [["_dP]], { desc = "Paste while keeping the registry" })
 -- moving
 map("i", "<C-a>", "<C-o>I", { noremap = true })
 map("i", "<C-e>", "<C-o>A", { noremap = true })
-map("i", "<C-k>", "<C-o>D", { noremap = true })
 
 -- buffers
 map("n", "<leader>sp", "<cmd>sp<cr>", { desc = "Open horizontal split" })
@@ -53,18 +52,17 @@ map({ "n", "v" }, "<leader>d", [["_d]])
 map("n", "<LocalLeader>rt", ":-1r " .. vim.fn.stdpath("config") .. "/templates", { noremap = true })
 
 -- hide all
-local s = { hidden_all = 0 }
-map("n", "<C-h>", function()
-	s.hidden_all = 1 - s.hidden_all
-	local opt = s.hidden_all == 0
-	vim.opt.showmode = opt
-	vim.opt.ruler = opt
-	vim.opt.nu = opt
-	vim.opt.rnu = opt
-	vim.opt.showcmd = opt
-	vim.opt.laststatus = opt and 2 or 0
-	vim.opt.signcolumn = opt and "yes" or "no"
-end, { noremap = true })
+local hidden = true -- flag
+vim.api.nvim_create_user_command("Hide", function()
+	hidden = hidden == false
+	vim.opt.showmode = hidden
+	vim.opt.ruler = hidden
+	vim.opt.nu = hidden
+	vim.opt.rnu = hidden
+	vim.opt.showcmd = hidden
+	vim.opt.laststatus = hidden and 2 or 0
+	vim.opt.signcolumn = hidden and "yes" or "no"
+end, {})
 
 -- write
 map("n", "<Leader>w", "<cmd>write<cr>", { noremap = true })

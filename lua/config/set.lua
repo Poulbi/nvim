@@ -109,3 +109,6 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 vim.diagnostic.config({
 	float = { border = _border },
 })
+
+-- highlight to-do's
+vim.cmd("match Todo /\\(TODO\\|FIXME\\):/")

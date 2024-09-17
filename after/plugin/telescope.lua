@@ -25,7 +25,7 @@ require("telescope").setup({
 
 local builtin = require("telescope.builtin")
 map("n", " tf", builtin.find_files)
-map("n", " tb", builtin.buffers)
+map("n", " bl", builtin.buffers)
 map("n", "<C-p>", builtin.git_files)
 map("n", " tw", builtin.live_grep)
 map("n", " th", builtin.help_tags, { desc = "Find help tags" })
