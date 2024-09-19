@@ -110,5 +110,8 @@ vim.diagnostic.config({
 	float = { border = _border },
 })
 
--- highlight to-do's
+-- Highlighting
 vim.cmd("match Todo /\\(TODO\\|FIXME\\):/")
+
+vim.cmd("match matchURL /" .. "\\(https\\?\\|ftp\\|magnet\\):\\/\\/[[:alnum:]%\\/_#.-~:]*" .. "/")
+vim.cmd("hi matchURL guifg=" .. require("nord.colors").palette.aurora.yellow)

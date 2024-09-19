@@ -93,3 +93,6 @@ autocmd({ "BufNewFile", "BufRead" }, {
 		end
 	end,
 })
+
+-- Automatically resize panes
+autocmd("VimResized", { pattern = "*", command = "wincmd =" })

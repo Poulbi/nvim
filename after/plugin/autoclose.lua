@@ -18,12 +18,7 @@ local filetypes = require("autoclose").setup({
 		["{"] = { escape = false, close = true, pair = "{}" },
 		["}"] = { escape = true, close = false, pair = "{}" },
 		[">"] = { escape = true, close = false, pair = "<>" },
-		['"'] = {
-			escape = true,
-			close = true,
-			pair = '""',
-			disabled_filetypes = { "text", "telekasten", "groff", "diff", "gitcommit", "fugitive", "markdown" },
-		},
+		['"'] = { escape = true, close = true, pair = '""' },
 		["'"] = {
 			escape = true,
 			close = true,
@@ -35,10 +30,8 @@ local filetypes = require("autoclose").setup({
 			escape = true,
 			close = true,
 			pair = "``",
-			enabled_fileptypes = { "markdown" },
+			enabled_fileptypes = { "markdown", "go", "javascript" },
 		},
-		["*"] = { escape = true, close = true, pair = "**", enabled_filetypes = { "markdown" } },
-		["_"] = { escape = true, close = true, pair = "__", enabled_filetypes = { "markdown" } },
 	},
 	options = {
 		disable_when_touch = true,
