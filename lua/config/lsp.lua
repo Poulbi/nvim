@@ -2,7 +2,7 @@
 local map = vim.keymap.set
 map("n", " la", vim.lsp.buf.code_action)
 map("n", "gd", vim.lsp.buf.definition)
-map("n", " lr", vim.lsp.buf.rename)
+map("n", " r", vim.lsp.buf.rename)
 map("n", " li", vim.lsp.buf.implementation)
 map("n", " lh", vim.lsp.buf.signature_help)
 map("n", " lt", vim.lsp.buf.typehierarchy)

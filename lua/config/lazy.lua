@@ -24,6 +24,12 @@ require("lazy").setup({
 	"stevearc/conform.nvim",
 	"mfussenegger/nvim-lint",
 	"neovim/nvim-lspconfig",
+	{
+		"norcalli/nvim-colorizer.lua",
+		config = function()
+			require("colorizer").setup()
+		end,
+	},
 
 	{
 		"williamboman/mason.nvim",

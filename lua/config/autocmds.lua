@@ -23,16 +23,6 @@ autocmd("BufWritePre", {
 	end,
 })
 
--- Run gofmt + goimports on save
-local format_sync_grp = vim.api.nvim_create_augroup("goimports", {})
-autocmd("BufWritePre", {
-	pattern = "*.go",
-	callback = function()
-		require("go.format").goimports()
-	end,
-	group = format_sync_grp,
-})
-
 autocmd("TermOpen", {
 	callback = function()
 		local o = vim.opt_local
@@ -96,3 +86,10 @@ autocmd({ "BufNewFile", "BufRead" }, {
 
 -- Automatically resize panes
 autocmd("VimResized", { pattern = "*", command = "wincmd =" })
+
+vim.api.nvim_create_autocmd("BufEnter", {
+	callback = function()
+		vim.opt.formatoptions:remove({ "c", "r", "o" })
+	end,
+	desc = "Disable New Line Comment",
+})

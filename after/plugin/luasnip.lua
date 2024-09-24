@@ -26,6 +26,6 @@ ls.config.set_config({
 	history = true,
 })
 
-ls.add_snippets("all", {
-	ls.parser.parse_snippet("expand", "-- this is $1 expanded $2 $3!"),
-})
+-- ls.add_snippets("all", {
+-- 	ls.parser.parse_snippet("expand", "-- this is $1 expanded $2 $3!"),
+-- })
