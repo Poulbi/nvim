@@ -62,6 +62,7 @@ opt.clipboard = "unnamed"
 opt.showmatch = false
 -- highlight line at cursor
 opt.cursorline = true
+opt.textwidth = 100
 
 -- status line
 -- show ruler
@@ -84,7 +85,7 @@ opt.smartindent = true
 opt.scrolloff = 8
 
 opt.spelllang = "en_us,nl"
-opt.formatoptions = "cqrnj"
+opt.formatoptions = "tocqrnj"
 
 -- Get the current working directory, replace the $HOME portion of the path with ~,
 -- and extract the last three directories
