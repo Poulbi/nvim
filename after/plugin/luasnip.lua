@@ -1,11 +1,8 @@
 local ls = require("luasnip")
-local s = ls.snippet
-local i = ls.insert_node
-local t = ls.text_node
 
 local map = vim.keymap.set
 
-map("i", "<C-h>", function()
+map({ "i", "s" }, "<C-h>", function()
 	if ls.expand_or_locally_jumpable() then
 		ls.expand_or_jump()
 	end
