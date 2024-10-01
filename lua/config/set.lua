@@ -63,6 +63,7 @@ opt.showmatch = false
 -- highlight line at cursor
 opt.cursorline = true
 opt.textwidth = 100
+opt.colorcolumn = "100"
 
 -- status line
 -- show ruler
@@ -98,18 +99,6 @@ else
 end
 
 opt.title = true
-
--- rounded border around floating windows
-local _border = "rounded"
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-	border = _border,
-})
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-	border = _border,
-})
-vim.diagnostic.config({
-	float = { border = _border },
-})
 
 -- Highlighting
 vim.cmd("match Todo /\\(TODO\\|FIXME\\):/")

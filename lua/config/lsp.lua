@@ -1,62 +1,67 @@
 -- [[ Keybinds ]]
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+local cmp = require("cmp")
+local context = require("cmp.config.context")
+local diagnostic = vim.diagnostic
+local lbuf = vim.lsp.buf
 local map = vim.keymap.set
-map("n", " la", vim.lsp.buf.code_action)
-map("n", "gd", vim.lsp.buf.definition)
-map("n", " r", vim.lsp.buf.rename)
-map("n", " li", vim.lsp.buf.implementation)
-map("n", " lh", vim.lsp.buf.signature_help)
-map("n", " lt", vim.lsp.buf.typehierarchy)
-map("n", " lr", vim.lsp.buf.references)
-map("n", " ls", vim.lsp.buf.document_symbol)
-map("n", " ld", vim.lsp.buf.type_definition)
-map("n", " lq", vim.diagnostic.setqflist)
+local lspconfig = require("lspconfig")
+local lspkind = require("lspkind")
+local builtin = require("telescope.builtin")
+
+map("n", " lca", lbuf.code_action, { desc = "Code actions" })
+map("n", "gd", lbuf.definition, { desc = "Definition" })
+map("n", " lrn", lbuf.rename, { desc = "Rename" })
+map("n", " lim", builtin.lsp_implementations, { desc = "Implementation" })
+map("n", " lsh", lbuf.signature_help, { desc = "Signature help" })
+map("n", " lth", lbuf.typehierarchy, { desc = "Type hierarchy" })
+map("n", " llf", lbuf.references, { desc = "References" })
+map("n", " lds", lbuf.document_symbol, { desc = "List symbols" })
+map("n", " ltd", lbuf.type_definition, { desc = "Type definition" })
+-- map("n", " lls", vim.lsp.handlers["workspace/symbol"])
+map("n", " lq", diagnostic.setqflist, { desc = "Diagnostic quickfix" })
+map("n", " >>", diagnostic.goto_next, { desc = "Diagnostic next" })
+map("n", " <<", diagnostic.goto_prev, { desc = "Diagnostic prev" })
+map("n", " <,", function()
+	diagnostic.goto_next({ severity = diagnostic.ERROR })
+end, { desc = "Diagnostic next error" })
+map("n", " >.", function()
+	diagnostic.goto_prev({ severity = diagnostic.ERROR })
+end, { desc = "Diagnostic prev error" })
+map("n", " vf", diagnostic.open_float, { desc = "Diagnostics open floating window" })
+-- map("n", " ")
 
 -- [[ LSP Setups ]]
-local lspconfig = require("lspconfig")
 
-lspconfig.gopls.setup({})
+lspconfig.gopls.setup({
+	settings = {
+		gopls = {
+			hints = {
+				assignVariableTypes = true,
+				compositeLiteralFields = true,
+				compositeLiteralTypes = true,
+				constantValues = true,
+				functionTypeParameters = true,
+				parameterNames = true,
+				rangeVariableTypes = true,
+			},
+		},
+	},
+})
 lspconfig.clangd.setup({})
 lspconfig.emmet_ls.setup({})
-
--- lua
--- with neovim support
-require("lspconfig").lua_ls.setup({
-	on_init = function(client)
-		local path = client.workspace_folders[1].name
-		if vim.loop.fs_stat(path .. "/.luarc.json") or vim.loop.fs_stat(path .. "/.luarc.jsonc") then
-			return
-		end
-
-		client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
-			runtime = {
-				-- Tell the language server which version of Lua you're using
-				-- (most likely LuaJIT in the case of Neovim)
-				version = "LuaJIT",
-			},
-			-- Make the server aware of Neovim runtime files
-			workspace = {
-				checkThirdParty = false,
-				library = {
-					vim.env.VIMRUNTIME,
-					-- Depending on the usage, you might want to add additional paths here.
-					-- "${3rd}/luv/library"
-					-- "${3rd}/busted/library",
-				},
-				-- or pull in all of 'runtimepath'. NOTE: this is a lot slower
-				-- library = vim.api.nvim_get_runtime_file("", true)
-			},
-		})
-	end,
-	settings = {
-		Lua = {},
+lspconfig.ts_ls.setup({})
+lspconfig.powershell_es.setup({
+	cmd = {
+		"pwsh",
+		"-NoLog",
+		"-NoProfile",
+		"-Command",
+		"/home/aluc/.local/share/nvim/mason/packages/powershell-editor-services/PowerShellEditorServices/Start-EditorServices.ps1",
 	},
 })
 
 -- [[ nvim cmp ]]
-require("cmp_nvim_lsp").default_capabilities()
-local cmp = require("cmp")
-local context = require("cmp.config.context")
-local lspkind = require("lspkind")
 cmp.setup({
 	enabled = function()
 		if context.in_treesitter_capture("comment") == true or context.in_syntax_group("Comment") then
@@ -116,3 +121,41 @@ cmp.setup({
 })
 
 vim.api.nvim_set_hl(0, "CmpItemMenu", { italic = true })
+
+-- rounded border around floating windows
+local _border = "rounded"
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+	border = _border,
+})
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+	border = _border,
+})
+vim.diagnostic.config({
+	float = { border = _border },
+})
+-- lua
+-- with neovim support
+require("lspconfig").lua_ls.setup({
+	on_init = function(client)
+		local path = client.workspace_folders[1].name
+		if vim.loop.fs_stat(path .. "/.luarc.json") or vim.loop.fs_stat(path .. "/.luarc.jsonc") then
+			return
+		end
+
+		client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
+			runtime = {
+				version = "LuaJIT",
+			},
+			-- Make the server aware of Neovim runtime files
+			workspace = {
+				checkThirdParty = false,
+				library = {
+					vim.env.VIMRUNTIME,
+				},
+			},
+		})
+	end,
+	settings = {
+		Lua = {},
+	},
+})

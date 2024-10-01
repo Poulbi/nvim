@@ -47,6 +47,16 @@ require("lazy").setup({
 		end,
 	},
 	{
+		"ray-x/lsp_signature.nvim",
+		event = "VeryLazy",
+		opts = {
+			doc_lines = 0,
+		},
+		config = function(_, opts)
+			require("lsp_signature").setup(opts)
+		end,
+	},
+	{
 		--snippets
 		"L3MON4D3/LuaSnip",
 		version = "v2.*",
@@ -62,6 +72,25 @@ require("lazy").setup({
 			"onsails/lspkind.nvim",
 		},
 		event = { "InsertEnter", "CmdlineEnter" },
+	},
+
+	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		opts = {
+			win = {
+				border = "rounded",
+			},
+		},
+		keys = {
+			{
+				"<leader>?",
+				function()
+					require("which-key").show({ global = false })
+				end,
+				desc = "Buffer Local Keymaps (which-key)",
+			},
+		},
 	},
 
 	{
