@@ -103,11 +103,11 @@ opt.title = true
 -- Highlighting
 vim.cmd("match Todo /\\(TODO\\|FIXME\\):/")
 
-vim.cmd("match matchURL /" .. "\\(https\\?\\|ftp\\|magnet\\):\\/\\/[[:alnum:]%\\/_#.-~:]*" .. "/")
-vim.cmd("hi matchURL guifg=" .. require("nord.colors").palette.aurora.yellow)
-
 -- -- Custom highlight for markdown definitions
 if vim.filetype.match({ buf = 0 }) == "markdown" then
 	vim.cmd("match mdDefs /^[[:space:]]*-[^:]\\+:/")
 	vim.cmd("hi mdDefs guifg=" .. require("nord.colors").palette.frost.ice)
 end
+
+vim.cmd("match matchURL /" .. "\\(https\\?\\|ftp\\|magnet\\):\\/\\/[[:alnum:]%\\/_#.-~:]*" .. "/")
+vim.cmd("hi matchURL guifg=" .. require("nord.colors").palette.aurora.yellow)
