@@ -27,8 +27,8 @@ ls.config.set_config({
 
 ls.add_snippets("go", {
 	ls.parser.parse_snippet("main", "package main\n\nfunc main() {\n\t$0\n}"),
-	ls.parser.parse_snippet("e", "if err != nil {\n\tfmt.Println(err)$1\n}\n$0"),
-	ls.parser.parse_snippet("ee", "if err != nil {\n\tfmt.Println(err)$1\n\tos.Exit(${2:1})\n}\n$0"),
+	ls.parser.parse_snippet("e", "if err != nil {\n\tpanic(err)$1\n}\n$0"),
+	ls.parser.parse_snippet("ee", "if err != nil {\n\tfmt.Fprintln(os.Stderr, err)$1\n\tos.Exit(${2:1})\n}\n$0"),
 	ls.parser.parse_snippet("eif", "if err := $1; err != nil {\n\tfmt.Println(err)$2\n}\n$0"),
 	ls.parser.parse_snippet("pf", "fmt.Printf($0)"),
 	ls.parser.parse_snippet("pl", "fmt.Println($0)"),
