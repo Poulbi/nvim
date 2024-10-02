@@ -63,7 +63,7 @@ opt.showmatch = false
 -- highlight line at cursor
 opt.cursorline = true
 opt.textwidth = 100
-opt.colorcolumn = "100"
+-- opt.colorcolumn = "102"
 
 -- status line
 -- show ruler
