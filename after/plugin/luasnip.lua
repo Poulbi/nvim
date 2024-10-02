@@ -36,3 +36,6 @@ ls.add_snippets("go", {
 ls.add_snippets("sh", {
 	ls.parser.parse_snippet("!", "#!/bin/sh\n$0"),
 })
+ls.add_snippets("c", {
+	ls.parser.parse_snippet("main", "int main(void) {\n\t$0\n\treturn 0;\n}"),
+})
