@@ -90,7 +90,7 @@ opt.formatoptions = "tocqrnj"
 
 -- Get the current working directory, replace the $HOME portion of the path with ~,
 -- and extract the last three directories
-local cwd = vim.fn.getcwd():gsub(os.getenv("HOME"), "~")
+local cwd = vim.fn.getcwd():gsub(home, "~")
 local last_dirs = string.match(cwd, "[^/]+/[^/]+/[^/]+/?$")
 if last_dirs then
 	opt.titlestring = last_dirs .. " -> %t"
@@ -105,9 +105,10 @@ vim.cmd("match Todo /\\(TODO\\|FIXME\\):/")
 
 -- -- Custom highlight for markdown definitions
 if vim.filetype.match({ buf = 0 }) == "markdown" then
-	vim.cmd("match mdDefs /^[[:space:]]*-[^:]\\+:/")
 	vim.cmd("hi mdDefs guifg=" .. require("nord.colors").palette.frost.ice)
+	vim.cmd("match mdDefs /^[[:space:]]*-[^:]\\+:/")
 end
 
-vim.cmd("match matchURL /" .. "\\(https\\?\\|ftp\\|magnet\\):\\/\\/[[:alnum:]%\\/_#.-~:]*" .. "/")
+-- TODO: this is some text
+vim.cmd("syntax match matchURL /" .. "\\(https\\?\\|ftp\\|magnet\\):\\/\\/[[:alnum:]%\\/_#.-~:]*" .. "/")
 vim.cmd("hi matchURL guifg=" .. require("nord.colors").palette.aurora.yellow)

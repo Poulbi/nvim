@@ -9,15 +9,15 @@ local lspconfig = require("lspconfig")
 local lspkind = require("lspkind")
 local builtin = require("telescope.builtin")
 
-map("n", " lca", lbuf.code_action, { desc = "Code actions" })
+map("n", " <cr>", lbuf.code_action, { desc = "Code actions" })
 map("n", "gd", lbuf.definition, { desc = "Definition" })
-map("n", " lrn", lbuf.rename, { desc = "Rename" })
-map("n", " lim", builtin.lsp_implementations, { desc = "Implementation" })
-map("n", " lsh", lbuf.signature_help, { desc = "Signature help" })
-map("n", " lth", lbuf.typehierarchy, { desc = "Type hierarchy" })
-map("n", " llf", lbuf.references, { desc = "References" })
-map("n", " lds", lbuf.document_symbol, { desc = "List symbols" })
-map("n", " ltd", lbuf.type_definition, { desc = "Type definition" })
+map("n", " lr", lbuf.rename, { desc = "Rename" })
+map("n", " li", builtin.lsp_implementations, { desc = "Implementation" })
+map("n", " ls", lbuf.signature_help, { desc = "Signature help" })
+map("n", " lh", lbuf.typehierarchy, { desc = "Type hierarchy" })
+map("n", " lf", lbuf.references, { desc = "References" })
+map("n", " ll", lbuf.document_symbol, { desc = "List symbols" })
+map("n", " lt", lbuf.type_definition, { desc = "Type definition" })
 -- map("n", " lls", vim.lsp.handlers["workspace/symbol"])
 map("n", " lq", diagnostic.setqflist, { desc = "Diagnostic quickfix" })
 map("n", " >>", diagnostic.goto_next, { desc = "Diagnostic next" })
@@ -31,22 +31,24 @@ end, { desc = "Diagnostic prev error" })
 map("n", " vf", diagnostic.open_float, { desc = "Diagnostics open floating window" })
 -- map("n", " ")
 
+-- vim.lsp.inlay_hint(0, false)
+
 -- [[ LSP Setups ]]
 
 lspconfig.gopls.setup({
-	settings = {
-		gopls = {
-			hints = {
-				assignVariableTypes = true,
-				compositeLiteralFields = true,
-				compositeLiteralTypes = true,
-				constantValues = true,
-				functionTypeParameters = true,
-				parameterNames = true,
-				rangeVariableTypes = true,
-			},
-		},
-	},
+	-- 	settings = {
+	-- 		gopls = {
+	-- 			hints = {
+	-- 				assignVariableTypes = true,
+	-- 				compositeLiteralFields = true,
+	-- 				compositeLiteralTypes = true,
+	-- 				constantValues = true,
+	-- 				functionTypeParameters = true,
+	-- 				parameterNames = true,
+	-- 				rangeVariableTypes = true,
+	-- 			},
+	-- 		},
+	-- 	},
 })
 lspconfig.clangd.setup({})
 lspconfig.emmet_ls.setup({})
@@ -58,6 +60,31 @@ lspconfig.powershell_es.setup({
 		"-NoProfile",
 		"-Command",
 		"/home/aluc/.local/share/nvim/mason/packages/powershell-editor-services/PowerShellEditorServices/Start-EditorServices.ps1",
+	},
+})
+lspconfig.lua_ls.setup({
+	-- with neovim support
+	on_init = function(client)
+		local path = client.workspace_folders[1].name
+		if vim.loop.fs_stat(path .. "/.luarc.json") or vim.loop.fs_stat(path .. "/.luarc.jsonc") then
+			return
+		end
+
+		client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
+			runtime = {
+				version = "LuaJIT",
+			},
+			-- Make the server aware of Neovim runtime files
+			workspace = {
+				checkThirdParty = false,
+				library = {
+					vim.env.VIMRUNTIME,
+				},
+			},
+		})
+	end,
+	settings = {
+		Lua = {},
 	},
 })
 
@@ -132,30 +159,4 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 })
 vim.diagnostic.config({
 	float = { border = _border },
-})
--- lua
--- with neovim support
-require("lspconfig").lua_ls.setup({
-	on_init = function(client)
-		local path = client.workspace_folders[1].name
-		if vim.loop.fs_stat(path .. "/.luarc.json") or vim.loop.fs_stat(path .. "/.luarc.jsonc") then
-			return
-		end
-
-		client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
-			runtime = {
-				version = "LuaJIT",
-			},
-			-- Make the server aware of Neovim runtime files
-			workspace = {
-				checkThirdParty = false,
-				library = {
-					vim.env.VIMRUNTIME,
-				},
-			},
-		})
-	end,
-	settings = {
-		Lua = {},
-	},
 })
