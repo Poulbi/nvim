@@ -67,16 +67,27 @@ map("n", " W", "<cmd>write!<cr>", { noremap = true })
 map("n", " e", "<cmd>edit<cr>", { noremap = true })
 map("n", ",s", function()
 	vim.cmd.source()
-	print("sourced.")
+	print("Sourced.")
 end, { noremap = true })
 
 -- Lazy
 map("n", " P", "<cmd>Lazy<cr>", { noremap = true })
 
--- spelling
-map("n", " ts", "<cmd>setlocal spell!<cr>", { noremap = true, desc = "Toggle spelling" })
-map("n", "<C-s>g", "z=1<cr><cr>", { noremap = true })
+local function verbose_toggle(value, name)
+	local toggle = value == false
+	if toggle == true then
+		print("Enabled " .. name .. ".")
+	else
+		print("Disabled " .. name .. ".")
+	end
+	return toggle
+end
 
+-- spelling
+map("n", " ts", function()
+	vim.o.spell = verbose_toggle(vim.o.spell, "spelling")
+end, { noremap = true, desc = "Toggle spelling" })
+map("n", "<C-s>g", "z=1<cr><cr>", { noremap = true })
 map("n", " td", function()
-	vim.diagnostic.enable(vim.diagnostic.is_enabled() == false)
+	vim.diagnostic.enable(verbose_toggle(vim.diagnostic.is_enabled(), "diagnostics"))
 end, { desc = "Toggle diagnostics" })
