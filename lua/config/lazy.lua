@@ -15,6 +15,7 @@ vim.opt.rtp:prepend(lazypath)
 -- plugins installation and configuration
 require("lazy").setup({
 	"echasnovski/mini.nvim",
+	"tpope/vim-fugitive",
 	"lewis6991/gitsigns.nvim",
 	"tpope/vim-vinegar",
 	"tpope/vim-eunuch",

@@ -20,20 +20,19 @@ map("n", "N", "Nzzzv", { desc = "Keep cursor in middle with search" })
 map("n", "J", "mzJ`z", { desc = "Move up next line with space in between" })
 
 -- greatest remap ever
-map("x", "<leader>p", [["_dP]], { desc = "Paste while keeping the registry" })
+map("x", " p", [["_dP]], { desc = "Paste while keeping the registry" })
 
 -- moving
 map("i", "<C-a>", "<C-o>I", { noremap = true })
 map("i", "<C-e>", "<C-o>A", { noremap = true })
 
 -- buffers
-map("n", "<leader>sp", "<cmd>sp<cr>", { desc = "Open horizontal split" })
-map("n", "<leader>vs", "<cmd>vs<cr>", { desc = "Open vertical split" })
-map("n", "gb", "<cmd>buffers<cr>:buffer<Space>", { noremap = true })
-map("n", "<Leader>q", "<cmd>q!<cr>", { noremap = true })
-map("n", "<Leader>Q", "<cmd>qa!<cr>", { noremap = true })
+map("n", " sp", "<cmd>sp<cr>", { desc = "Open horizontal split" })
+map("n", " vs", "<cmd>vs<cr>", { desc = "Open vertical split" })
+map("n", " q", "<cmd>q!<cr>", { noremap = true })
+map("n", " Q", "<cmd>qa!<cr>", { noremap = true })
 -- close all except focused buffer
-map("n", "<leader>1", "<cmd>%bd|e#<cr>", { noremap = true })
+map("n", " 1", "<cmd>%bd|e#<cr>", { noremap = true })
 -- next tab
 map("n", "+", "<cmd>tabe .<cr>", { noremap = true })
 
@@ -42,11 +41,9 @@ map("v", "<", "<gv")
 map("v", ">", ">gv")
 
 -- allow for use of system clipboard fast
-map({ "n", "v" }, "<leader>y", [["+y]])
-map("n", "<leader>Y", [["+Y]])
-map({ "n", "v" }, "<leader>P", [["+p]])
-
-map({ "n", "v" }, "<leader>d", [["_d]])
+map({ "n", "v" }, " y", [["+y]])
+map("n", " Y", [["+Y]])
+map({ "n", "v" }, " P", [["+p]])
 
 -- templates
 map("n", "<LocalLeader>rt", ":-1r " .. vim.fn.stdpath("config") .. "/templates", { noremap = true })
@@ -65,17 +62,21 @@ vim.api.nvim_create_user_command("Hide", function()
 end, {})
 
 -- write
-map("n", "<Leader>w", "<cmd>write<cr>", { noremap = true })
-map("n", "<Leader>W", "<cmd>write!<cr>", { noremap = true })
-map("n", "<Leader>e", "<cmd>edit<cr>", { noremap = true })
-map("n", "<LocalLeader>s", function()
+map("n", " w", "<cmd>write<cr>", { noremap = true })
+map("n", " W", "<cmd>write!<cr>", { noremap = true })
+map("n", " e", "<cmd>edit<cr>", { noremap = true })
+map("n", ",s", function()
 	vim.cmd.source()
 	print("sourced.")
 end, { noremap = true })
 
 -- Lazy
-map("n", "<Leader>P", "<cmd>Lazy<cr>", { noremap = true })
+map("n", " P", "<cmd>Lazy<cr>", { noremap = true })
 
 -- spelling
-map("n", "<C-s>s", "<cmd>setlocal spell!<cr>", { noremap = true })
+map("n", " ts", "<cmd>setlocal spell!<cr>", { noremap = true, desc = "Toggle spelling" })
 map("n", "<C-s>g", "z=1<cr><cr>", { noremap = true })
+
+map("n", " td", function()
+	vim.diagnostic.enable(vim.diagnostic.is_enabled() == false)
+end, { desc = "Toggle diagnostics" })
