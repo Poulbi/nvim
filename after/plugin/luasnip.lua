@@ -23,6 +23,8 @@ map("n", "  s", "<cmd>source ~/.config/nvim/after/plugin/luasnip.lua<cr>")
 
 ls.config.set_config({
 	history = true,
+	-- Will update multiple nodes at the same time when in insert mode
+	update_events = { "TextChanged", "TextChangedI" },
 })
 
 ls.add_snippets("go", {
@@ -38,4 +40,10 @@ ls.add_snippets("sh", {
 })
 ls.add_snippets("c", {
 	ls.parser.parse_snippet("main", "int main(void) {\n\t$0\n\treturn 0;\n}"),
+})
+ls.add_snippets("typescript", {
+	ls.parser.parse_snippet("cl", "console.log($0);"),
+})
+ls.add_snippets("html", {
+	ls.parser.parse_snippet("t", [[<$1>$0</$1>]]),
 })
