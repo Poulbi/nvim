@@ -27,14 +27,22 @@ conform.formatters["clang-format"] = {
 	},
 }
 
+-- ID of autocmd for CFormat
+vim.b.CFormatID = nil
 -- Enable formatting on save for C only when using the :CFormat command
 vim.api.nvim_create_user_command("CFormat", function()
-	vim.api.nvim_create_autocmd("BufWritePre", {
-		buffer = 0,
-		callback = function()
-			conform.format({ formatters = { "clang-format" } })
-		end,
-	})
-	conform.format({ formatters = { "clang-format" } })
-	vim.cmd.write()
+	if vim.b.CFormatID == nil then
+		vim.b.CFormatID = vim.api.nvim_create_autocmd("BufWritePre", {
+			buffer = 0,
+			callback = function()
+				conform.format({ formatters = { "clang-format" } })
+			end,
+		})
+		conform.format({ formatters = { "clang-format" } })
+		print("Auto formatting enabled.")
+	else
+		vim.api.nvim_del_autocmd(vim.b.CFormatID)
+		print("Auto formatting disabled.")
+		vim.b.CFormatID = nil
+	end
 end, {})
