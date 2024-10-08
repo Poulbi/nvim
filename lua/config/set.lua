@@ -106,3 +106,9 @@ vim.cmd("match Todo /\\(TODO\\|FIXME\\):/")
 -- TODO: this is some text
 vim.cmd("syntax match matchURL /" .. "\\(https\\?\\|ftp\\|magnet\\):\\/\\/[[:alnum:]%\\/_#.-~:]*" .. "/")
 vim.cmd("hi matchURL guifg=" .. require("nord.colors").palette.aurora.yellow)
+
+vim.opt.fillchars = { fold = " " }
+vim.opt.foldmethod = "indent"
+vim.opt.foldenable = false
+vim.opt.foldlevel = 99
+vim.g.markdown_folding = 1

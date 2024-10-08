@@ -37,6 +37,10 @@ ls.add_snippets("go", {
 })
 ls.add_snippets("sh", {
 	ls.parser.parse_snippet("!", "#!/bin/sh\n$0"),
+	ls.parser.parse_snippet("if", "if ${1:condition}; then\n\t$0\nfi"),
+	ls.parser.parse_snippet("while", "while ${1:condition}; do\n\t$0\ndone"),
+	ls.parser.parse_snippet("for", "for ${1:v} in ${2:list}; do\n\t$0\ndone"),
+	ls.parser.parse_snippet("case", "case ${1:\\$var} in\n\t$0\nesac"),
 })
 ls.add_snippets("c", {
 	ls.parser.parse_snippet("main", "int main(void) {\n\t$0\n\treturn 0;\n}"),
