@@ -43,7 +43,7 @@ ls.add_snippets("sh", {
 	ls.parser.parse_snippet("case", "case ${1:\\$var} in\n\t$0\nesac"),
 })
 ls.add_snippets("c", {
-	ls.parser.parse_snippet("main", "int main(void) {\n\t$0\n\treturn 0;\n}"),
+	ls.parser.parse_snippet("smain", "#include <stdio.h>\n\nint main(void) {\n\t$0\n\treturn 0;\n}"),
 })
 ls.add_snippets("typescript", {
 	ls.parser.parse_snippet("cl", "console.log($0);"),
