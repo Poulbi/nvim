@@ -32,6 +32,20 @@ local filetypes = require("autoclose").setup({
 			pair = "``",
 			enabled_fileptypes = { "markdown", "go", "javascript" },
 		},
+		["_"] = {
+			escape = false,
+			close = true,
+			pair = "__",
+			enabled_fileptypes = { "markdown" },
+			disabled_when = in_comment,
+		},
+		["*"] = {
+			escape = false,
+			close = true,
+			pair = "**",
+			enabled_fileptypes = { "markdown" },
+			disabled_when = in_comment,
+		},
 	},
 	options = {
 		disable_when_touch = true,
