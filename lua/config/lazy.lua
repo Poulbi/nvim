@@ -187,6 +187,14 @@ require("lazy").setup({
 		branch = "harpoon2",
 		requires = { "nvim-lua/plenary.nvim", lazy = true },
 	},
+
+	-- DAP
+	{
+		{
+			"mfussenegger/nvim-dap",
+		},
+		{ "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
+	},
 }, {
 
 	-- lazy options

@@ -62,6 +62,7 @@ vim.api.nvim_create_user_command("Hide", function()
 end, {})
 
 -- write
+map("n", " x", "!cx %", { desc = "Toggle file as executable" })
 map("n", " w", "<cmd>write<cr>", { noremap = true })
 map("n", " W", "<cmd>write!<cr>", { noremap = true })
 map("n", " e", "<cmd>edit<cr>", { noremap = true })
