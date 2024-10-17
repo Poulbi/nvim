@@ -9,7 +9,8 @@ local function in_comment()
 	end
 end
 
-local filetypes = require("autoclose").setup({
+local autoclose = require("autoclose")
+autoclose.setup({
 	keys = {
 		["("] = { escape = false, close = true, pair = "()" },
 		[")"] = { escape = true, close = false, pair = "()" },
@@ -30,20 +31,20 @@ local filetypes = require("autoclose").setup({
 			escape = true,
 			close = true,
 			pair = "``",
-			enabled_fileptypes = { "markdown", "go", "javascript" },
+			enabled_filetypes = { "markdown", "go", "javascript" },
 		},
 		["_"] = {
 			escape = false,
 			close = true,
 			pair = "__",
-			enabled_fileptypes = { "markdown" },
+			enabled_filetypes = { "markdown" },
 			disabled_when = in_comment,
 		},
 		["*"] = {
 			escape = false,
 			close = true,
 			pair = "**",
-			enabled_fileptypes = { "markdown" },
+			enabled_filetypes = { "markdown" },
 			disabled_when = in_comment,
 		},
 	},

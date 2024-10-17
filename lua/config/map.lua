@@ -92,3 +92,7 @@ map("n", "<C-s>g", "z=1<cr><cr>", { noremap = true })
 map("n", " td", function()
 	vim.diagnostic.enable(verbose_toggle(vim.diagnostic.is_enabled(), "diagnostics"))
 end, { desc = "Toggle diagnostics" })
+
+-- editing
+map("n", " sf", ":%s/\\<<C-R><C-W>\\>//gc<Left><Left><Left>", { desc = "Replace word under cursor in file" })
+map("n", " sl", "", { desc = "Replace word under cursor on current line" })
