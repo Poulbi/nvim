@@ -1,6 +1,7 @@
 local ls = require("luasnip")
 
 local map = vim.keymap.set
+local parse_snippet = ls.parser.parse_snippet
 
 map({ "i", "s" }, "<C-h>", function()
 	if ls.expand_or_locally_jumpable() then
@@ -28,26 +29,33 @@ ls.config.set_config({
 })
 
 ls.add_snippets("go", {
-	ls.parser.parse_snippet("main", "package main\n\nfunc main() {\n\t$0\n}"),
-	ls.parser.parse_snippet("e", "if err != nil {\n\tpanic(err)$1\n}\n$0"),
-	ls.parser.parse_snippet("ee", "if err != nil {\n\tfmt.Fprintln(os.Stderr, err)$1\n\tos.Exit(${2:1})\n}\n$0"),
-	ls.parser.parse_snippet("eif", "if err := $1; err != nil {\n\tfmt.Println(err)$2\n}\n$0"),
-	ls.parser.parse_snippet("pf", "fmt.Printf($0)"),
-	ls.parser.parse_snippet("pl", "fmt.Println($0)"),
+	parse_snippet("main", "package main\n\nfunc main() {\n\t$0\n}"),
+	parse_snippet("e", "if err != nil {\n\tpanic(err)$1\n}\n$0"),
+	parse_snippet("ee", "if err != nil {\n\tfmt.Fprintln(os.Stderr, err)$1\n\tos.Exit(${2:1})\n}\n$0"),
+	parse_snippet("eif", "if err := $1; err != nil {\n\tfmt.Println(err)$2\n}\n$0"),
+	parse_snippet("pf", "fmt.Printf($0)"),
+	parse_snippet("pl", "fmt.Println($0)"),
 })
 ls.add_snippets("sh", {
-	ls.parser.parse_snippet("!", "#!/bin/sh\n$0"),
-	ls.parser.parse_snippet("if", "if ${1:condition}; then\n\t$0\nfi"),
-	ls.parser.parse_snippet("while", "while ${1:condition}; do\n\t$0\ndone"),
-	ls.parser.parse_snippet("for", "for ${1:v} in ${2:list}; do\n\t$0\ndone"),
-	ls.parser.parse_snippet("case", "case ${1:\\$var} in\n\t$0\nesac"),
+	parse_snippet("!", "#!/bin/sh\n$0"),
+	parse_snippet("if", "if ${1:condition}; then\n\t$0\nfi"),
+	parse_snippet("while", "while ${1:condition}; do\n\t$0\ndone"),
+	parse_snippet("for", "for ${1:v} in ${2:list}; do\n\t$0\ndone"),
+	parse_snippet("case", "case ${1:\\$var} in\n\t$0\nesac"),
 })
 ls.add_snippets("c", {
-	ls.parser.parse_snippet("main", "int main(void) {\n\t$0\n\treturn 0;\n}"),
+	parse_snippet("main", "int main(void) {\n\t$0\n\treturn 0;\n}"),
+	parse_snippet(
+		"uints",
+		[[typedef uint8_t u8;
+typedef uint16_t u16;
+typedef uint32_t u32;
+typedef uint64_t u64;
+typedef int8_t s8;
+typedef int16_t s16;
+typedef int32_t s32;
+typedef int64_t s64;]]
+	),
 })
-ls.add_snippets("typescript", {
-	ls.parser.parse_snippet("cl", "console.log($0);"),
-})
-ls.add_snippets("html", {
-	ls.parser.parse_snippet("t", [[<$1>$0</$1>]]),
-})
+ls.add_snippets("typescript", { parse_snippet("cl", "console.log($0);") })
+ls.add_snippets("html", { parse_snippet("t", [[<$1>$0</$1>]]) })
