@@ -18,7 +18,6 @@ conform.formatters["clang-format"] = {
 		"{"
 			.. "IndentWidth: 4, "
 			.. "AlignAfterOpenBracket: BlockIndent, "
-			.. "AlignConsecutiveAssignments: Consecutive, "
 			.. "AlignArrayOfStructures: Right, "
 			.. "BreakBeforeBraces: Linux, "
 			.. "ColumnLimit: "
