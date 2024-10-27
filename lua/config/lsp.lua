@@ -102,6 +102,9 @@ cmp.setup({
 			require("luasnip").lsp_expand(args.body)
 		end,
 	},
+	completion = {
+		autocomplete = false,
+	},
 	window = {
 		completion = cmp.config.window.bordered(),
 		documentation = cmp.config.window.bordered(),
@@ -159,4 +162,25 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 })
 vim.diagnostic.config({
 	float = { border = _border },
+})
+
+local autocmd = vim.api.nvim_create_autocmd
+autocmd("LspAttach", {
+	callback = function(args)
+		local client = vim.lsp.get_client_by_id(args.data.client_id)
+		if client == nil then
+			return
+		end
+		if vim.tbl_contains({ "null-ls" }, client.name) then -- blacklist lsp
+			return
+		end
+		require("lsp_signature").on_attach({
+			hint_enable = false,
+			doc_lines = 0,
+			bind = true,
+			handler_opts = {
+				border = "rounded",
+			},
+		}, args.bufnr)
+	end,
 })

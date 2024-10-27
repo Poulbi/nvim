@@ -20,6 +20,10 @@ conform.formatters["clang-format"] = {
 			.. "AlignAfterOpenBracket: BlockIndent, "
 			.. "AlignArrayOfStructures: Right, "
 			.. "BreakBeforeBraces: Linux, "
+			.. "PointerAlignment: Left,"
+			.. "AllowShortIfStatementsOnASingleLine: true, "
+			.. "AllowShortLoopsOnASingleLine: true, "
+			.. "AllowAllArgumentsOnNextLine: true, "
 			.. "ColumnLimit: "
 			.. vim.o.tw
 			.. "}",

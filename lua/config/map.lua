@@ -95,4 +95,4 @@ end, { desc = "Toggle diagnostics" })
 
 -- editing
 map("n", " sf", ":%s/\\<<C-R><C-W>\\>//gc<Left><Left><Left>", { desc = "Replace word under cursor in file" })
-map("n", " sl", "", { desc = "Replace word under cursor on current line" })
+map("n", " sl", ":s/\\<<C-R><C-W>\\>//g<Left><Left>", { desc = "Replace word under cursor on current line" })
