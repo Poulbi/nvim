@@ -6,8 +6,8 @@ opt.incsearch = true
 opt.conceallevel = 2
 
 -- Enable line numbers by default
-opt.number = true
-opt.relativenumber = true
+-- opt.number = true
+-- opt.relativenumber = true
 
 -- Tab settings
 opt.tabstop = 4
@@ -41,7 +41,7 @@ opt.updatetime = 50
 opt.timeoutlen = 300
 
 -- Set completeopt to have a better completion experience
-opt.completeopt = "menuone,noselect"
+opt.completeopt = ""
 
 -- Enable true color support
 opt.termguicolors = true

@@ -11,6 +11,7 @@ local builtin = require("telescope.builtin")
 
 map("n", " <cr>", lbuf.code_action, { desc = "Code actions" })
 map("n", "gd", lbuf.definition, { desc = "Definition" })
+map("i", "<C-k>", lbuf.hover)
 map("n", " lr", lbuf.rename, { desc = "Rename" })
 map("n", " li", builtin.lsp_implementations, { desc = "Implementation" })
 map("n", " ls", lbuf.signature_help, { desc = "Signature help" })
@@ -88,70 +89,6 @@ lspconfig.lua_ls.setup({
 	},
 })
 
--- [[ nvim cmp ]]
-cmp.setup({
-	enabled = function()
-		if context.in_treesitter_capture("comment") == true or context.in_syntax_group("Comment") then
-			return false
-		else
-			return true
-		end
-	end,
-	snippet = {
-		expand = function(args)
-			require("luasnip").lsp_expand(args.body)
-		end,
-	},
-	completion = {
-		autocomplete = false,
-	},
-	window = {
-		completion = cmp.config.window.bordered(),
-		documentation = cmp.config.window.bordered(),
-	},
-	mapping = cmp.mapping.preset.insert({
-		["<C-b>"] = cmp.mapping.scroll_docs(-4),
-		["<C-f>"] = cmp.mapping.scroll_docs(4),
-		["<C-Space>"] = cmp.mapping.complete(),
-		["<C-c>"] = cmp.mapping.abort(),
-		["<CR>"] = cmp.mapping({
-			i = function(fallback)
-				if cmp.visible() and cmp.get_active_entry() then
-					cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
-				else
-					fallback()
-				end
-			end,
-			s = cmp.mapping.confirm({ select = true }),
-			c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
-		}),
-	}),
-	sources = cmp.config.sources({
-		{
-			name = "nvim_lsp",
-			keyword_length = 3,
-		},
-		-- { name = "luasnip" },
-	}, {
-		-- { name = "buffer", max_item_count = 5 },
-		{ name = "path", max_item_count = 5 },
-	}),
-	formatting = {
-		format = lspkind.cmp_format({
-			mode = "symbol_text",
-			menu = {
-				buffer = "(Buffer)",
-				nvim_lsp = "(LSP)",
-				luasnip = "(LuaSnip)",
-				nvim_lua = "(Lua)",
-				latex_symbols = "(Latex)",
-			},
-		}),
-	},
-})
-
-vim.api.nvim_set_hl(0, "CmpItemMenu", { italic = true })
-
 -- rounded border around floating windows
 local _border = "rounded"
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
@@ -174,13 +111,5 @@ autocmd("LspAttach", {
 		if vim.tbl_contains({ "null-ls" }, client.name) then -- blacklist lsp
 			return
 		end
-		require("lsp_signature").on_attach({
-			hint_enable = false,
-			doc_lines = 0,
-			bind = true,
-			handler_opts = {
-				border = "rounded",
-			},
-		}, args.bufnr)
 	end,
 })

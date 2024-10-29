@@ -24,6 +24,8 @@ conform.formatters["clang-format"] = {
 			.. "AllowShortIfStatementsOnASingleLine: true, "
 			.. "AllowShortLoopsOnASingleLine: true, "
 			.. "AllowAllArgumentsOnNextLine: true, "
+			.. "AllowShortCaseLabelsOnASingleLine: true, "
+			.. "BreakAfterReturnType: AllDefinitions, "
 			.. "ColumnLimit: "
 			.. vim.o.tw
 			.. "}",
