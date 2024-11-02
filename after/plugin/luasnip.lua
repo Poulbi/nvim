@@ -47,14 +47,16 @@ ls.add_snippets("c", {
 	parse_snippet("main", "int main(void) {\n\t$0\n\treturn 0;\n}"),
 	parse_snippet(
 		"uints",
-		[[typedef uint8_t u8;
+		[[#include <stdint.h>
+typedef uint8_t u8;
 typedef uint16_t u16;
 typedef uint32_t u32;
 typedef uint64_t u64;
 typedef int8_t s8;
 typedef int16_t s16;
 typedef int32_t s32;
-typedef int64_t s64;]]
+typedef int64_t s64;
+]]
 	),
 })
 ls.add_snippets("typescript", { parse_snippet("cl", "console.log($0);") })
