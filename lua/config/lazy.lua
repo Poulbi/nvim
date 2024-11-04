@@ -23,51 +23,51 @@ require("lazy").setup({
 	"jghauser/follow-md-links.nvim",
 	"m4xshen/autoclose.nvim",
 	"stevearc/conform.nvim",
-	"mfussenegger/nvim-lint",
-	"neovim/nvim-lspconfig",
-	{
-		"norcalli/nvim-colorizer.lua",
-		config = function()
-			-- require("colorizer").setup()
-		end,
-	},
-
-	{
-		"williamboman/mason.nvim",
-		dependencies = {
-			"williamboman/mason-lspconfig.nvim",
-			-- for formatters and linters
-			"WhoIsSethDaniel/mason-tool-installer.nvim",
-		},
-		config = function()
-			require("mason").setup({
-				ui = {
-					border = "rounded",
-				},
-			})
-		end,
-	},
-	{
-		"ray-x/lsp_signature.nvim",
-		event = "LspAttach",
-	},
-	{
-		--snippets
-		"L3MON4D3/LuaSnip",
-		version = "v2.*",
-		build = "make install_jsregexp",
-	},
-	{
-		"hrsh7th/nvim-cmp",
-		dependencies = {
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-path",
-			"hrsh7th/cmp-buffer",
-			"saadparwaiz1/cmp_luasnip",
-			"onsails/lspkind.nvim",
-		},
-		event = { "InsertEnter", "CmdlineEnter" },
-	},
+	-- "mfussenegger/nvim-lint",
+	-- "neovim/nvim-lspconfig",
+	-- {
+	-- 	"norcalli/nvim-colorizer.lua",
+	-- 	config = function()
+	-- 		-- require("colorizer").setup()
+	-- 	end,
+	-- },
+	--
+	-- {
+	-- 	"williamboman/mason.nvim",
+	-- 	dependencies = {
+	-- 		"williamboman/mason-lspconfig.nvim",
+	-- 		-- for formatters and linters
+	-- 		"WhoIsSethDaniel/mason-tool-installer.nvim",
+	-- 	},
+	-- 	config = function()
+	-- 		require("mason").setup({
+	-- 			ui = {
+	-- 				border = "rounded",
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- },
+	-- {
+	-- 	"ray-x/lsp_signature.nvim",
+	-- 	event = "LspAttach",
+	-- },
+	-- {
+	-- 	--snippets
+	-- 	"L3MON4D3/LuaSnip",
+	-- 	version = "v2.*",
+	-- 	build = "make install_jsregexp",
+	-- },
+	-- {
+	-- 	"hrsh7th/nvim-cmp",
+	-- 	dependencies = {
+	-- 		"hrsh7th/cmp-nvim-lsp",
+	-- 		"hrsh7th/cmp-path",
+	-- 		"hrsh7th/cmp-buffer",
+	-- 		"saadparwaiz1/cmp_luasnip",
+	-- 		"onsails/lspkind.nvim",
+	-- 	},
+	-- 	event = { "InsertEnter", "CmdlineEnter" },
+	-- },
 
 	{
 		"folke/which-key.nvim",

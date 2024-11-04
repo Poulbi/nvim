@@ -96,3 +96,15 @@ end, { desc = "Toggle diagnostics" })
 -- editing
 map("n", " sf", ":%s/\\<<C-R><C-W>\\>//gc<Left><Left><Left>", { desc = "Replace word under cursor in file" })
 map("n", " sl", ":s/\\<<C-R><C-W>\\>//g<Left><Left>", { desc = "Replace word under cursor on current line" })
+
+map("n", "]q", "<cmd>cn<cr>", { desc = "Next item in quickfix", silent = true })
+map("n", "[q", "<cmd>cp<cr>", { desc = "Next item in quickfix", silent = true })
+
+vim.api.nvim_create_user_command("Scratch", function()
+	vim.cmd([[
+    e scratch
+    setlocal buftype=nofile
+    setlocal bufhidden=hide
+    setlocal noswapfile
+    ]])
+end, {})

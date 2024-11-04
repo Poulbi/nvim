@@ -16,4 +16,7 @@ map("n", ",i", function()
 	vim.cmd("normal ''")
 end, { desc = "Include header for word under cursor" })
 map("n", ",f", mapcmd("CF"), { desc = "Toggle formatting" })
-vim.o.commentstring = "// %s"
+
+vim.opt.commentstring = "// %s"
+-- disable indent in switch statement
+vim.opt.cinoptions = "l1"
