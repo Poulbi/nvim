@@ -23,39 +23,33 @@ require("lazy").setup({
 	"jghauser/follow-md-links.nvim",
 	"m4xshen/autoclose.nvim",
 	"stevearc/conform.nvim",
+	"norcalli/nvim-colorizer.lua",
+	"neovim/nvim-lspconfig",
+	{
+		"williamboman/mason.nvim",
+		dependencies = {
+			"williamboman/mason-lspconfig.nvim",
+			-- for formatters and linters
+			"WhoIsSethDaniel/mason-tool-installer.nvim",
+		},
+		config = function()
+			require("mason").setup({
+				ui = {
+					border = "rounded",
+				},
+			})
+		end,
+	},
+	{
+		--snippets
+		"L3MON4D3/LuaSnip",
+		version = "v2.*",
+		build = "make install_jsregexp",
+	},
 	-- "mfussenegger/nvim-lint",
-	-- "neovim/nvim-lspconfig",
-	-- {
-	-- 	"norcalli/nvim-colorizer.lua",
-	-- 	config = function()
-	-- 		-- require("colorizer").setup()
-	-- 	end,
-	-- },
-	--
-	-- {
-	-- 	"williamboman/mason.nvim",
-	-- 	dependencies = {
-	-- 		"williamboman/mason-lspconfig.nvim",
-	-- 		-- for formatters and linters
-	-- 		"WhoIsSethDaniel/mason-tool-installer.nvim",
-	-- 	},
-	-- 	config = function()
-	-- 		require("mason").setup({
-	-- 			ui = {
-	-- 				border = "rounded",
-	-- 			},
-	-- 		})
-	-- 	end,
-	-- },
 	-- {
 	-- 	"ray-x/lsp_signature.nvim",
 	-- 	event = "LspAttach",
-	-- },
-	-- {
-	-- 	--snippets
-	-- 	"L3MON4D3/LuaSnip",
-	-- 	version = "v2.*",
-	-- 	build = "make install_jsregexp",
 	-- },
 	-- {
 	-- 	"hrsh7th/nvim-cmp",
@@ -68,7 +62,6 @@ require("lazy").setup({
 	-- 	},
 	-- 	event = { "InsertEnter", "CmdlineEnter" },
 	-- },
-
 	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",

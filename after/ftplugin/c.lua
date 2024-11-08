@@ -10,7 +10,7 @@ map("n", ",i", function()
 	local word = vim.fn.expand("<cword>")
 	vim.cmd([[
 	normal m'
-	0/^#include/
+	0
 	normal O
 	.!include.sh ]] .. word)
 	vim.cmd("normal ''")

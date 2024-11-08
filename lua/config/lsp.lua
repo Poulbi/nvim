@@ -1,12 +1,8 @@
 -- [[ Keybinds ]]
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
-local cmp = require("cmp")
-local context = require("cmp.config.context")
 local diagnostic = vim.diagnostic
 local lbuf = vim.lsp.buf
 local map = vim.keymap.set
 local lspconfig = require("lspconfig")
-local lspkind = require("lspkind")
 local builtin = require("telescope.builtin")
 
 map("n", " <cr>", lbuf.code_action, { desc = "Code actions" })
