@@ -131,9 +131,6 @@ map({ "i", "s" }, "<C-c>", function()
 	end
 end, { silent = true })
 
--- temporary keybind to play around
-map("n", "  s", "<cmd>source ~/.config/nvim/after/plugin/luasnip.lua<cr>")
-
 ls.config.set_config({
 	history = true,
 	-- Will update multiple nodes at the same time when in insert mode
@@ -142,7 +139,7 @@ ls.config.set_config({
 
 ls.add_snippets("go", {
 	parse_snippet("main", "package main\n\nfunc main() {\n\t$0\n}"),
-	parse_snippet("e", "if err != nil {\n\tpanic(err)$1\n}\n$0"),
+	parse_snippet("e", "if err != nil {\n\tpanic(err)$1\n}$0"),
 	parse_snippet("ee", "if err != nil {\n\tfmt.Fprintln(os.Stderr, err)$1\n\tos.Exit(${2:1})\n}\n$0"),
 	parse_snippet("eif", "if err := $1; err != nil {\n\tfmt.Println(err)$2\n}\n$0"),
 	parse_snippet("pf", "fmt.Printf($0)"),
