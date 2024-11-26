@@ -20,3 +20,5 @@ map("n", ",f", mapcmd("CF"), { desc = "Toggle formatting" })
 vim.opt.commentstring = "// %s"
 -- disable indent in switch statement
 vim.opt.cinoptions = "l1"
+
+vim.opt.makeprg = "gccg " .. vim.fn.expand("%")
