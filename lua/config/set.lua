@@ -8,6 +8,7 @@ opt.conceallevel = 2
 -- Enable line numbers by default
 -- opt.number = true
 -- opt.relativenumber = true
+opt.signcolumn = "no"
 
 -- Tab settings
 opt.tabstop = 4

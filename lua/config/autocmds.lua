@@ -72,17 +72,17 @@ autocmd(
 	}
 )
 
-autocmd({ "BufNewFile", "BufRead" }, {
-	pattern = "*",
-	callback = function()
-		local output = vim.fn.system("git rev-parse --is-inside-work-tree")
-		if output == "true\n" then
-			vim.opt.signcolumn = "yes"
-		else
-			vim.opt.signcolumn = "no"
-		end
-	end,
-})
+-- autocmd({ "BufNewFile", "BufRead" }, {
+-- 	pattern = "*",
+-- 	callback = function()
+-- 		local output = vim.fn.system("git rev-parse --is-inside-work-tree")
+-- 		if output == "true\n" then
+-- 			vim.opt.signcolumn = "yes"
+-- 		else
+-- 			vim.opt.signcolumn = "no"
+-- 		end
+-- 	end,
+-- })
 
 -- Automatically resize panes
 autocmd("VimResized", { pattern = "*", command = "wincmd =" })

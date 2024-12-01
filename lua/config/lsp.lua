@@ -50,15 +50,15 @@ lspconfig.gopls.setup({
 lspconfig.clangd.setup({})
 lspconfig.emmet_ls.setup({})
 lspconfig.ts_ls.setup({})
-lspconfig.powershell_es.setup({
-	cmd = {
-		"pwsh",
-		"-NoLog",
-		"-NoProfile",
-		"-Command",
-		"/home/aluc/.local/share/nvim/mason/packages/powershell-editor-services/PowerShellEditorServices/Start-EditorServices.ps1",
-	},
-})
+-- lspconfig.powershell_es.setup({
+-- 	cmd = {
+-- 		"pwsh",
+-- 		"-NoLog",
+-- 		"-NoProfile",
+-- 		"-Command",
+-- 		"/home/aluc/.local/share/nvim/mason/packages/powershell-editor-services/PowerShellEditorServices/Start-EditorServices.ps1",
+-- 	},
+-- })
 lspconfig.lua_ls.setup({
 	-- with neovim support
 	on_init = function(client)
@@ -153,7 +153,7 @@ ls.add_snippets("sh", {
 	parse_snippet("case", "case ${1:\\$var} in\n\t$0\nesac"),
 })
 ls.add_snippets("c", {
-	parse_snippet("main", "int main(void) {\n\t$0\n\treturn 0;\n}"),
+	parse_snippet("main", "int\nmain(int Argc, char* Argv[])\n{\n\t$0\n\treturn 0;\n}"),
 	parse_snippet(
 		"uints",
 		[[#include <stdint.h>
