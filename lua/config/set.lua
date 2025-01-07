@@ -102,11 +102,15 @@ end
 opt.title = true
 
 -- Highlighting
-vim.cmd("match Todo /\\(TODO\\|FIXME\\):/")
-
--- TODO: this is some text
-vim.cmd("syntax match matchURL /" .. "\\(https\\?\\|ftp\\|magnet\\):\\/\\/[[:alnum:]%\\/_#.-~:]*" .. "/")
-vim.cmd("hi matchURL guifg=" .. require("nord.colors").palette.aurora.yellow)
+-- NOTE:
+vim.fn.matchadd("matchNotes", "NOTE\\((.*)\\)\\?:")
+vim.api.nvim_set_hl(0, "matchNotes", { fg = require("nord.colors").palette.frost.ice })
+-- TODO: FIXME:
+vim.api.nvim_set_hl(0, "matchTodos", { fg = require("nord.colors").palette.aurora.yellow })
+vim.fn.matchadd("matchTodos", "\\(TODO\\|FIXME\\)\\((.*)\\)\\?:")
+-- ERROR: BUG:
+vim.api.nvim_set_hl(0, "matchErrors", { fg = require("nord.colors").palette.aurora.red })
+vim.fn.matchadd("matchErrors", "\\(BUG\\|ERROR\\)\\((.*)\\)\\?:")
 
 -- vim.opt.fillchars = { fold = " " }
 -- vim.opt.foldmethod = "indent"
