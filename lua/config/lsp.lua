@@ -153,7 +153,7 @@ ls.add_snippets("sh", {
 	parse_snippet("case", "case ${1:\\$var} in\n\t$0\nesac"),
 })
 ls.add_snippets("c", {
-	parse_snippet("main", "int\nmain(int Argc, char* Argv[])\n{\n\t$0\n\treturn 0;\n}"),
+	parse_snippet("main", "int\nmain(int Argc, char *Args[])\n{\n\t$0\n\treturn 0;\n}"),
 	parse_snippet(
 		"uints",
 		[[#include <stdint.h>
