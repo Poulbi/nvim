@@ -32,7 +32,7 @@ map("n", " vf", diagnostic.open_float, { desc = "Diagnostics open floating windo
 
 -- [[ LSP Setups ]]
 
-lspconfig.gopls.setup({
+-- lspconfig.gopls.setup({
 	-- 	settings = {
 	-- 		gopls = {
 	-- 			hints = {
@@ -46,10 +46,10 @@ lspconfig.gopls.setup({
 	-- 			},
 	-- 		},
 	-- 	},
-})
-lspconfig.clangd.setup({})
-lspconfig.emmet_ls.setup({})
-lspconfig.ts_ls.setup({})
+-- })
+-- lspconfig.clangd.setup({})
+-- lspconfig.emmet_ls.setup({})
+-- lspconfig.ts_ls.setup({})
 -- lspconfig.powershell_es.setup({
 -- 	cmd = {
 -- 		"pwsh",
@@ -59,31 +59,31 @@ lspconfig.ts_ls.setup({})
 -- 		"/home/aluc/.local/share/nvim/mason/packages/powershell-editor-services/PowerShellEditorServices/Start-EditorServices.ps1",
 -- 	},
 -- })
-lspconfig.lua_ls.setup({
-	-- with neovim support
-	on_init = function(client)
-		local path = client.workspace_folders[1].name
-		if vim.loop.fs_stat(path .. "/.luarc.json") or vim.loop.fs_stat(path .. "/.luarc.jsonc") then
-			return
-		end
-
-		client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
-			runtime = {
-				version = "LuaJIT",
-			},
-			-- Make the server aware of Neovim runtime files
-			workspace = {
-				checkThirdParty = false,
-				library = {
-					vim.env.VIMRUNTIME,
-				},
-			},
-		})
-	end,
-	settings = {
-		Lua = {},
-	},
-})
+-- lspconfig.lua_ls.setup({
+-- 	-- with neovim support
+-- 	on_init = function(client)
+-- 		local path = client.workspace_folders[1].name
+-- 		if vim.loop.fs_stat(path .. "/.luarc.json") or vim.loop.fs_stat(path .. "/.luarc.jsonc") then
+-- 			return
+-- 		end
+--
+-- 		client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
+-- 			runtime = {
+-- 				version = "LuaJIT",
+-- 			},
+-- 			-- Make the server aware of Neovim runtime files
+-- 			workspace = {
+-- 				checkThirdParty = false,
+-- 				library = {
+-- 					vim.env.VIMRUNTIME,
+-- 				},
+-- 			},
+-- 		})
+-- 	end,
+-- 	settings = {
+-- 		Lua = {},
+-- 	},
+-- })
 
 -- rounded border around floating windows
 local _border = "rounded"
