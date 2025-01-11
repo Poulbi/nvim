@@ -21,7 +21,6 @@ require("lazy").setup({
 	"tpope/vim-eunuch",
 	"mg979/vim-visual-multi",
 	"jghauser/follow-md-links.nvim",
-	"m4xshen/autoclose.nvim",
 	"stevearc/conform.nvim",
 	"norcalli/nvim-colorizer.lua",
 	"neovim/nvim-lspconfig",

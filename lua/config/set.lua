@@ -30,6 +30,7 @@ opt.backup = true
 opt.writebackup = true
 opt.undodir = home .. "/.local/state/nvim"
 -- https://stackoverflow.com/a/1625850
+-- TODO: Check if directory exists
 opt.backupdir = home .. "/.local/share/Trash/nvim//,."
 opt.directory = home .. "/.local/share/Trash/nvim//,."
 
@@ -86,7 +87,7 @@ opt.history = 200
 opt.smartindent = true
 opt.scrolloff = 8
 
-opt.spelllang = "en_us,nl"
+-- opt.spelllang = "en_us,nl"
 opt.formatoptions = "tocqrnj"
 
 -- Get the current working directory, replace the $HOME portion of the path with ~,
