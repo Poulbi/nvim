@@ -23,6 +23,6 @@ vim.opt.commentstring = "// %s"
 -- disable indent in switch statement
 vim.opt.cinoptions = "l1"
 
-vim.bo.makeprg = "gccg " .. vim.fn.expand("%")
+vim.bo.makeprg = "./build.sh"
 
 vim.cmd("TSDisable indent")

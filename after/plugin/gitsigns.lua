@@ -11,7 +11,7 @@ gitsigns.setup({
 	numhl = false,
 	attach_to_untracked = true,
 	update_debounce = 0,
-	on_attach = function(buffer)
+	on_attach = function()
 		local map = vim.keymap.set
 	        -- stylua: ignore start
 	        map("n", "]g", gitsigns.next_hunk, { desc = "Next git hunk" })

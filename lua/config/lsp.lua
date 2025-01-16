@@ -2,7 +2,6 @@
 local diagnostic = vim.diagnostic
 local lbuf = vim.lsp.buf
 local map = vim.keymap.set
-local lspconfig = require("lspconfig")
 local builtin = require("telescope.builtin")
 
 map("n", " <cr>", lbuf.code_action, { desc = "Code actions" })
@@ -33,19 +32,19 @@ map("n", " vf", diagnostic.open_float, { desc = "Diagnostics open floating windo
 -- [[ LSP Setups ]]
 
 -- lspconfig.gopls.setup({
-	-- 	settings = {
-	-- 		gopls = {
-	-- 			hints = {
-	-- 				assignVariableTypes = true,
-	-- 				compositeLiteralFields = true,
-	-- 				compositeLiteralTypes = true,
-	-- 				constantValues = true,
-	-- 				functionTypeParameters = true,
-	-- 				parameterNames = true,
-	-- 				rangeVariableTypes = true,
-	-- 			},
-	-- 		},
-	-- 	},
+-- 	settings = {
+-- 		gopls = {
+-- 			hints = {
+-- 				assignVariableTypes = true,
+-- 				compositeLiteralFields = true,
+-- 				compositeLiteralTypes = true,
+-- 				constantValues = true,
+-- 				functionTypeParameters = true,
+-- 				parameterNames = true,
+-- 				rangeVariableTypes = true,
+-- 			},
+-- 		},
+-- 	},
 -- })
 -- lspconfig.clangd.setup({})
 -- lspconfig.emmet_ls.setup({})
@@ -56,7 +55,8 @@ map("n", " vf", diagnostic.open_float, { desc = "Diagnostics open floating windo
 -- 		"-NoLog",
 -- 		"-NoProfile",
 -- 		"-Command",
--- 		"/home/aluc/.local/share/nvim/mason/packages/powershell-editor-services/PowerShellEditorServices/Start-EditorServices.ps1",
+-- 		"/home/aluc/.local/share/nvim/mason/packages/" ..
+--		"powershell-editor-services/PowerShellEditorServices/Start-EditorServices.ps1",
 -- 	},
 -- })
 -- lspconfig.lua_ls.setup({
@@ -112,7 +112,6 @@ autocmd("LspAttach", {
 
 local ls = require("luasnip")
 
-local map = vim.keymap.set
 local parse_snippet = ls.parser.parse_snippet
 
 map({ "i", "s" }, "<C-h>", function()
