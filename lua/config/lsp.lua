@@ -31,21 +31,8 @@ map("n", " vf", diagnostic.open_float, { desc = "Diagnostics open floating windo
 
 -- [[ LSP Setups ]]
 
--- lspconfig.gopls.setup({
--- 	settings = {
--- 		gopls = {
--- 			hints = {
--- 				assignVariableTypes = true,
--- 				compositeLiteralFields = true,
--- 				compositeLiteralTypes = true,
--- 				constantValues = true,
--- 				functionTypeParameters = true,
--- 				parameterNames = true,
--- 				rangeVariableTypes = true,
--- 			},
--- 		},
--- 	},
--- })
+local lspconfig = require("lspconfig")
+lspconfig.gopls.setup({})
 -- lspconfig.clangd.setup({})
 -- lspconfig.emmet_ls.setup({})
 -- lspconfig.ts_ls.setup({})
