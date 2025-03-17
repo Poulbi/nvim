@@ -112,3 +112,5 @@ vim.api.nvim_create_user_command("Scratch", function()
     setlocal noswapfile
     ]])
 end, {})
+
+map("n", "<M-b>", "<cmd>make<cr>", { desc = "Make" })
