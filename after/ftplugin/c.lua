@@ -16,13 +16,14 @@ map("n", ",i", function()
 	vim.cmd("normal ''")
 end, { desc = "Include header for word under cursor" })
 map("n", ",f", mapcmd("CF"), { desc = "Toggle formatting" })
-map("n", "<M-b>", mapcmd("make"), { desc = "Make" })
 map("i", "<M-1>", "#if 1<cr>#endif<esc>O", { desc = "Insert `#if 1` block" })
 
 vim.opt.commentstring = "// %s"
 -- disable indent in switch statement
 vim.opt.cinoptions = "l1"
-
-vim.bo.makeprg = "./build.sh"
+local projects = require("config.projects")
+if projects and not projects.IsInProject then
+	vim.bo.makeprg = "./build.sh"
+end
 
 vim.cmd("TSDisable indent")
