@@ -4,6 +4,7 @@ local map = vim.keymap.set
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
+
 -- open config
 map("n", " c", function()
 	vim.cmd("cd ~/.config/nvim")
@@ -12,6 +13,8 @@ end, { desc = "Open neovim config file" })
 -- Move text easilly
 map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selected text up" })
 map("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selected text down" })
+
+map("n", "<M-b>", "<cmd>make<cr>", { desc = "Make" })
 
 -- better find next and previous
 map("n", "n", "nzzzv", { desc = "Keep cursor in middle with search" })
