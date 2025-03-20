@@ -7,7 +7,7 @@ M.Projects = {
 	MetaC = {
 		Path = HOME .. "/proj/metac",
 		Options = function()
-			vim.o.makeprg = M.Projects.MetaC.Path .. "/misc/build.sh"
+			vim.o.makeprg = M.Projects.MetaC.Path .. "/misc/metac_build"
 		end,
 	},
 }
