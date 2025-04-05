@@ -6,13 +6,12 @@ if not vim.loop.fs_stat(lazypath) then
 		"clone",
 		"--filter=blob:none",
 		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
+		"--branch=stable",
 		lazypath,
 	})
 end
 vim.opt.rtp:prepend(lazypath)
 
--- plugins installation and configuration
 require("lazy").setup({
 	"echasnovski/mini.nvim",
 	"tpope/vim-vinegar",
@@ -42,20 +41,16 @@ require("lazy").setup({
 		config = function()
 			require("nord").setup({
 				transparent = false,
-				terminal_colors = true, -- `:terminal`
+				terminal_colors = true,
 				diff = { mode = "bg" },
 				borders = true,
-				-- values : [bg|fg|none]
 				errors = { mode = "bg" },
-				-- values : [vim|vscode]
 				search = { theme = "vim" },
 				styles = {
-					-- `:help nvim_set_hl`
 					comments = { italic = true },
 					keywords = { bold = true },
 					functions = { bold = true },
 					variables = { bold = true },
-					-- To customize lualine/bufferline
 					bufferline = {
 						current = {},
 						modified = { italic = true },
@@ -66,7 +61,6 @@ require("lazy").setup({
 		end,
 	},
 	{
-		-- Fuzzy Finder (files, lsp, etc)
 		"nvim-telescope/telescope.nvim",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -83,8 +77,6 @@ require("lazy").setup({
 		build = ":TSUpdate",
 	},
 }, {
-
-	-- lazy options
 	performance = {
 		rtp = {
 			disabled_plugins = {
@@ -96,13 +88,4 @@ require("lazy").setup({
 			},
 		},
 	},
-	-- install = {
-	-- 	colorscheme = { "nord" },
-	-- 	missing = false,
-	-- },
-	-- change_detection = {
-	-- 	enabled = true,
-	-- 	notify = true,
-	-- },
-	-- checker = { enabled = true, notify = false },
 })

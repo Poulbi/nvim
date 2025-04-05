@@ -1,120 +1,78 @@
 local opt = vim.opt
+-- TODO: Check if HOME directory exists
+local home = os.getenv("HOME")
 
--- Don't highlight on search
 opt.hlsearch = false
 opt.incsearch = true
 opt.conceallevel = 2
-
--- Enable line numbers by default
--- opt.number = true
--- opt.relativenumber = true
 opt.signcolumn = "no"
-
--- Tab settings
 opt.tabstop = 4
 opt.softtabstop = 4
 opt.shiftwidth = 4
 opt.expandtab = true
-
--- Enable smart indenting
 opt.smartindent = true
-
--- Enable break indent
 opt.breakindent = true
+opt.backspace = "indent,eol,start"
 
-local home = os.getenv("HOME")
--- History settings
 opt.undofile = true
 opt.swapfile = true
 opt.backup = true
 opt.writebackup = true
 opt.undodir = home .. "/.local/state/nvim"
--- https://stackoverflow.com/a/1625850
--- TODO: Check if directory exists
 opt.backupdir = home .. "/.local/share/Trash/nvim//,."
 opt.directory = home .. "/.local/share/Trash/nvim//,."
 
--- Case-insensitive searching UNLESS \C or capital in search
 opt.ignorecase = true
 opt.smartcase = true
 
--- Decrease update time
 opt.updatetime = 50
 opt.timeoutlen = 300
-
--- Set completeopt to have a better completion experience
 opt.completeopt = ""
-
--- Enable true color support
-opt.termguicolors = true
-
--- Enable scroll off
 opt.scrolloff = 8
-
--- Don't show mode I'm in, already have a nice status line for that
-opt.showmode = false
-
--- Better split options
 opt.splitbelow = true
 opt.splitright = true
-
--- shared clipboard
 opt.clipboard = "unnamed"
--- do not highlight matched bracket
+
+opt.showmode = false
 opt.showmatch = false
--- highlight line at cursor
 opt.cursorline = true
 opt.textwidth = 100
 -- opt.colorcolumn = "102"
-
--- status line
--- show ruler
+opt.termguicolors = true
 opt.ruler = true
--- show command
 opt.showcmd = true
-
 opt.wildmenu = true
-
 opt.mouse = ""
-
-opt.backspace = "indent,eol,start"
-
 opt.laststatus = 2
 opt.history = 200
+
 -- opt.encoding = "utf-8"
 -- opt.fileencoding = "utf-8"
-
 opt.smartindent = true
 opt.scrolloff = 8
-
 -- opt.spelllang = "en_us,nl"
 opt.formatoptions = "tocqrnj"
 
--- Get the current working directory, replace the $HOME portion of the path with ~,
--- and extract the last three directories
-local cwd = vim.fn.getcwd():gsub(home, "~")
-local last_dirs = string.match(cwd, "[^/]+/[^/]+/[^/]+/?$")
-if last_dirs then
-	opt.titlestring = last_dirs .. " -> %t"
-else
-	opt.titlestring = cwd .. " -> %t"
-end
-
 opt.title = true
-
--- Highlighting
--- NOTE:
-vim.fn.matchadd("matchNotes", "NOTE\\((.*)\\)\\?:")
-vim.api.nvim_set_hl(0, "matchNotes", { fg = require("nord.colors").palette.frost.ice })
--- TODO: FIXME:
-vim.api.nvim_set_hl(0, "matchTodos", { fg = require("nord.colors").palette.aurora.yellow })
-vim.fn.matchadd("matchTodos", "\\(TODO\\|FIXME\\)\\((.*)\\)\\?:")
--- ERROR: BUG:
-vim.api.nvim_set_hl(0, "matchErrors", { fg = require("nord.colors").palette.aurora.red })
-vim.fn.matchadd("matchErrors", "\\(BUG\\|ERROR\\)\\((.*)\\)\\?:")
 
 -- vim.opt.fillchars = { fold = " " }
 -- vim.opt.foldmethod = "indent"
 vim.opt.foldenable = false
 vim.opt.foldlevel = 99
 vim.g.markdown_folding = 1
+
+local cwd = vim.fn.getcwd():gsub(home, "~")
+local IsInCWD = string.match(cwd, "[^/]+/[^/]+/[^/]+/?$")
+if IsInCWD then
+	opt.titlestring = IsInCWD .. " -> %t"
+else
+	opt.titlestring = cwd .. " -> %t"
+end
+
+-- Highlighting
+vim.api.nvim_set_hl(0, "matchNotes", { fg = require("nord.colors").palette.frost.ice })
+vim.fn.matchadd("matchNotes", "NOTE\\((.*)\\)\\?:")
+vim.api.nvim_set_hl(0, "matchTodos", { fg = require("nord.colors").palette.aurora.yellow })
+vim.fn.matchadd("matchTodos", "\\(TODO\\|FIXME\\)\\((.*)\\)\\?:")
+vim.api.nvim_set_hl(0, "matchErrors", { fg = require("nord.colors").palette.aurora.red })
+vim.fn.matchadd("matchErrors", "\\(BUG\\|ERROR\\)\\((.*)\\)\\?:")
