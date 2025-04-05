@@ -1,5 +1,8 @@
+local telescope = require("telescope")
+local builtin = require("telescope.builtin")
 local map = vim.keymap.set
-require("telescope").setup({
+
+telescope.setup({
 	defaults = {
 		path_display = {
 			shorten = {
@@ -23,17 +26,18 @@ require("telescope").setup({
 	},
 })
 
-local builtin = require("telescope.builtin")
 map("n", " ff", builtin.find_files)
-map("n", " bl", builtin.buffers)
+map("n", " fb", builtin.buffers)
 map("n", " fp", builtin.git_files)
 map("n", " fw", builtin.live_grep)
 map("n", " fh", builtin.help_tags)
+map("n", " fk", builtin.keymaps)
+map("n", " fs", builtin.spell_suggest)
 
 -- symbols
 map("n", " fe", "<cmd>lua require'telescope.builtin'.symbols{ sources = {'emoji', 'gitmoji'} }<CR>")
 map("n", " fn", "<cmd>lua require'telescope.builtin'.symbols{ sources = {'nerd'} }<CR>")
 map("n", " fj", "<cmd>lua require'telescope.builtin'.symbols{ sources = {'julia'} }<CR>")
+map("n", " ft", "<cmd>lua require'telescope.builtin'.treesitter{ symbols = {'function'} }<CR>")
 
-require("telescope").load_extension("ui-select")
-require("telescope").load_extension("fzf")
+telescope.load_extension("fzf")

@@ -6,132 +6,16 @@ if not vim.loop.fs_stat(lazypath) then
 		"clone",
 		"--filter=blob:none",
 		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
+		"--branch=stable",
 		lazypath,
 	})
 end
 vim.opt.rtp:prepend(lazypath)
 
--- plugins installation and configuration
 require("lazy").setup({
 	"echasnovski/mini.nvim",
-	"tpope/vim-fugitive",
-	"lewis6991/gitsigns.nvim",
 	"tpope/vim-vinegar",
-	"tpope/vim-eunuch",
-	-- "mg979/vim-visual-multi",
-	{
-		"brenton-leighton/multiple-cursors.nvim",
-		version = "*", -- Use the latest tagged version
-		opts = {
-			custom_key_maps = {
-				{
-					"n",
-					"<S-Tab>",
-					function()
-						require("multiple-cursors").align()
-					end,
-				},
-			},
-		},
-		keys = {
-			{ "<C-j>", "<Cmd>MultipleCursorsAddDown<CR>", mode = { "n", "x" }, desc = "Add cursor and move down" },
-			{ "<C-k>", "<Cmd>MultipleCursorsAddUp<CR>", mode = { "n", "x" }, desc = "Add cursor and move up" },
-
-			{ "<C-Up>", "<Cmd>MultipleCursorsAddUp<CR>", mode = { "n", "i", "x" }, desc = "Add cursor and move up" },
-			{
-				"<C-Down>",
-				"<Cmd>MultipleCursorsAddDown<CR>",
-				mode = { "n", "i", "x" },
-				desc = "Add cursor and move down",
-			},
-
-			{
-				"<Leader>m",
-				"<Cmd>MultipleCursorsAddVisualArea<CR>",
-				mode = { "x" },
-				desc = "Add cursors to the lines of the visual area",
-			},
-
-			{ "<Leader>a", "<Cmd>MultipleCursorsAddMatches<CR>", mode = { "n", "x" }, desc = "Add cursors to cword" },
-			{
-				"<Leader>A",
-				"<Cmd>MultipleCursorsAddMatchesV<CR>",
-				mode = { "n", "x" },
-				desc = "Add cursors to cword in previous area",
-			},
-
-			{
-				"<Leader>d",
-				"<Cmd>MultipleCursorsAddJumpNextMatch<CR>",
-				mode = { "n", "x" },
-				desc = "Add cursor and jump to next cword",
-			},
-			{ "<Leader>D", "<Cmd>MultipleCursorsJumpNextMatch<CR>", mode = { "n", "x" }, desc = "Jump to next cword" },
-
-			{ "<Leader>l", "<Cmd>MultipleCursorsLock<CR>", mode = { "n", "x" }, desc = "Lock virtual cursors" },
-		},
-	},
-	"jghauser/follow-md-links.nvim",
-	"stevearc/conform.nvim",
 	"norcalli/nvim-colorizer.lua",
-	"neovim/nvim-lspconfig",
-	{
-		"williamboman/mason.nvim",
-		dependencies = {
-			"williamboman/mason-lspconfig.nvim",
-			-- for formatters and linters
-			"WhoIsSethDaniel/mason-tool-installer.nvim",
-		},
-		config = function()
-			require("mason").setup({
-				ui = {
-					border = "rounded",
-				},
-			})
-		end,
-	},
-	{
-		--snippets
-		"L3MON4D3/LuaSnip",
-		version = "v2.*",
-		build = "make install_jsregexp",
-	},
-	-- "mfussenegger/nvim-lint",
-	-- {
-	-- 	"ray-x/lsp_signature.nvim",
-	-- 	event = "LspAttach",
-	-- },
-	-- {
-	-- 	"hrsh7th/nvim-cmp",
-	-- 	dependencies = {
-	-- 		"hrsh7th/cmp-nvim-lsp",
-	-- 		"hrsh7th/cmp-path",
-	-- 		"hrsh7th/cmp-buffer",
-	-- 		"saadparwaiz1/cmp_luasnip",
-	-- 		"onsails/lspkind.nvim",
-	-- 	},
-	-- 	event = { "InsertEnter", "CmdlineEnter" },
-	-- },
-	{
-		"folke/which-key.nvim",
-		event = "VeryLazy",
-		opts = {
-			win = {
-				border = "rounded",
-			},
-		},
-		keys = {
-			{
-				"<leader>?",
-				function()
-					require("which-key").show({ global = false })
-				end,
-				desc = "Buffer Local Keymaps (which-key)",
-			},
-		},
-	},
-
 	{
 		"christoomey/vim-tmux-navigator",
 		cmd = {
@@ -151,49 +35,22 @@ require("lazy").setup({
 	},
 
 	{
-		"ray-x/go.nvim",
-		dependencies = { -- optional packages
-			"ray-x/guihua.lua",
-			"neovim/nvim-lspconfig",
-			"nvim-treesitter/nvim-treesitter",
-		},
-		config = function()
-			require("go").setup()
-		end,
-		event = { "CmdlineEnter" },
-		ft = { "go", "gomod" },
-		build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
-	},
-
-	{
-		"dstein64/vim-startuptime",
-		cmd = "StartupTime",
-		init = function()
-			vim.g.startuptime_tries = 10
-		end,
-	},
-
-	{
 		"gbprod/nord.nvim",
 		lazy = false,
 		priority = 1000,
 		config = function()
 			require("nord").setup({
 				transparent = false,
-				terminal_colors = true, -- `:terminal`
+				terminal_colors = true,
 				diff = { mode = "bg" },
 				borders = true,
-				-- values : [bg|fg|none]
 				errors = { mode = "bg" },
-				-- values : [vim|vscode]
 				search = { theme = "vim" },
 				styles = {
-					-- `:help nvim_set_hl`
 					comments = { italic = true },
 					keywords = { bold = true },
 					functions = { bold = true },
 					variables = { bold = true },
-					-- To customize lualine/bufferline
 					bufferline = {
 						current = {},
 						modified = { italic = true },
@@ -204,7 +61,6 @@ require("lazy").setup({
 		end,
 	},
 	{
-		-- Fuzzy Finder (files, lsp, etc)
 		"nvim-telescope/telescope.nvim",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -220,22 +76,7 @@ require("lazy").setup({
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 	},
-	{
-		"ThePrimeagen/harpoon",
-		branch = "harpoon2",
-		requires = { "nvim-lua/plenary.nvim", lazy = true },
-	},
-
-	-- DAP
-	{
-		{
-			"mfussenegger/nvim-dap",
-		},
-		{ "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
-	},
 }, {
-
-	-- lazy options
 	performance = {
 		rtp = {
 			disabled_plugins = {
@@ -247,13 +88,4 @@ require("lazy").setup({
 			},
 		},
 	},
-	-- install = {
-	-- 	colorscheme = { "nord" },
-	-- 	missing = false,
-	-- },
-	-- change_detection = {
-	-- 	enabled = true,
-	-- 	notify = true,
-	-- },
-	-- checker = { enabled = true, notify = false },
 })

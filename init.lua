@@ -1,6 +1,5 @@
 require("config.lazy")
 require("config.set")
 require("config.map")
-require("config.lsp")
 require("config.autocmds")
 require("config.projects")

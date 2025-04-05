@@ -14,7 +14,7 @@ M.Projects = {
 
 M.InProject = false
 
-for At, Project in pairs(M.Projects) do
+for _, Project in pairs(M.Projects) do
 	if string.find(CWD, Project.Path) then
 		M.InProject = true
 		Project.Options()
