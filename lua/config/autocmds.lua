@@ -33,14 +33,6 @@ autocmd("TermOpen", {
 		vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { noremap = true })
 	end,
 })
--- -- close automatically when shell process exits
--- -- TODO: does not work
--- autocmd("TermClose", {
--- 	callback = function()
--- 		vim.cmd("bdelete")
--- 	end,
--- })
-vim.keymap.set("n", "!", "<cmd>sp<CR><cmd>term<CR>", { desc = "Open terminal" })
 
 -- [[ preserve last position ]]
 autocmd("BufReadPost", {
@@ -71,18 +63,6 @@ autocmd(
 		desc = "Enable spell checking for certain file types",
 	}
 )
-
--- autocmd({ "BufNewFile", "BufRead" }, {
--- 	pattern = "*",
--- 	callback = function()
--- 		local output = vim.fn.system("git rev-parse --is-inside-work-tree")
--- 		if output == "true\n" then
--- 			vim.opt.signcolumn = "yes"
--- 		else
--- 			vim.opt.signcolumn = "no"
--- 		end
--- 	end,
--- })
 
 -- Automatically resize panes
 autocmd("VimResized", { pattern = "*", command = "wincmd =" })

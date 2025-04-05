@@ -38,6 +38,7 @@ map("n", " Q", "<cmd>qa!<cr>", { noremap = true })
 map("n", " 1", "<cmd>%bd|e#<cr>", { noremap = true })
 -- next tab
 map("n", "+", "<cmd>tabe .<cr>", { noremap = true })
+map("n", "!", "<cmd>sp<CR><cmd>term<CR>", { desc = "Open terminal" })
 
 -- better indenting
 map("v", "<", "<gv")
