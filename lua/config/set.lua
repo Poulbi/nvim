@@ -76,3 +76,5 @@ vim.api.nvim_set_hl(0, "matchTodos", { fg = require("nord.colors").palette.auror
 vim.fn.matchadd("matchTodos", "\\(TODO\\|FIXME\\)\\((.*)\\)\\?:")
 vim.api.nvim_set_hl(0, "matchErrors", { fg = require("nord.colors").palette.aurora.red })
 vim.fn.matchadd("matchErrors", "\\(BUG\\|ERROR\\)\\((.*)\\)\\?:")
+vim.api.nvim_set_hl(0, "matchImportant", { fg = require("nord.colors").palette.aurora.yellow })
+vim.fn.matchadd("matchImportant", "IMPORTANT\\((.*)\\)\\?:")
