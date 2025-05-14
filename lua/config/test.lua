@@ -1,0 +1,5 @@
+vim.keymap.set("n", " c", function()
+    local Keyword = vim.fn.input("keyword: ")
+    vim.cmd([[cexpr system('grep -rnIi "]] .. Keyword ..  [["')]])
+    vim.cmd("copen")
+end, {desc = 'search for keyword'})
