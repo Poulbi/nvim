@@ -14,6 +14,8 @@ local function verbose_toggle(value, name)
 	return toggle
 end
 
+
+
 -- open config
 map("n", " c", function()
 	vim.cmd("cd ~/.config/nvim")
@@ -53,6 +55,13 @@ vim.api.nvim_create_user_command("Hide", function()
 	vim.opt.ruler = hidden
 	vim.opt.showcmd = hidden
 	vim.opt.laststatus = hidden and 2 or 0
+end, {})
+
+vim.api.nvim_create_user_command("ThisDir", function()
+      vim.api.nvim_paste([[
+ThisDir="$(dirname "$(readlink -f "$0")")"
+cd "$ThisDir"
+  ]], false, -1)
 end, {})
 
 map("n", " x", "!cx %", { desc = "Toggle file as executable" })
