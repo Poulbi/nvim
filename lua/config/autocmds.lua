@@ -50,19 +50,5 @@ autocmd({ "InsertLeave", "WinEnter" }, {
 })
 autocmd({ "InsertEnter", "WinLeave" }, { pattern = "*", command = "set nocursorline", group = cursorGrp })
 
--- [[ spellchecker activated in txt files ]]
-autocmd(
-	{ "BufRead", "BufNewFile" },
-	-- { pattern = { "*.txt", "*.md", "*.tex" }, command = [[setlocal spell<cr> setlocal spelllang=en,de<cr>]] }
-	{
-		pattern = { "*.txt" },
-		callback = function()
-			vim.opt.spell = true
-			vim.opt.spelllang = "en"
-		end,
-		desc = "Enable spell checking for certain file types",
-	}
-)
-
 -- Automatically resize panes
 autocmd("VimResized", { pattern = "*", command = "wincmd =" })
