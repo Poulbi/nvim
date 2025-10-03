@@ -11,7 +11,7 @@ M.Projects = {
 		end,
 	},
 	Wasmpoc = {
-		Path = HOME .. "/proj/probe/wasmpoc",
+		Path = HOME .. "/proj/wasmpoc",
 		Options = function(self)
 			vim.o.makeprg = self.Path .. "/code/build.sh"
 		end,
