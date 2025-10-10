@@ -55,7 +55,10 @@ vim.api.nvim_create_user_command("Hide", function()
 	vim.opt.ruler = hidden
 	vim.opt.showcmd = hidden
 	vim.opt.laststatus = hidden and 2 or 0
+ vim.cmd("normal :<CR>")
 end, {})
+vim.cmd("Hide")
+map("n", " b", "<cmd>Hide<cr>")
 
 vim.api.nvim_create_user_command("ThisDir", function()
       vim.api.nvim_paste([[
