@@ -26,9 +26,9 @@ telescope.setup({
 	},
 })
 
-map("n", "<C-o>", builtin.find_files)
+map("n", "<C-n>", builtin.find_files)
 map("n", "<C-b>", builtin.buffers)
-map("n", "<C-i>", builtin.git_files)
+map("n", "<C-p>", builtin.git_files)
 map("n", "<C-f>", builtin.live_grep)
 map("n", " fh", builtin.help_tags)
 map("n", " fk", builtin.keymaps)
