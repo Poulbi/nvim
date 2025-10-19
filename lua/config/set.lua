@@ -2,6 +2,9 @@ local opt = vim.opt
 -- TODO: Check if HOME directory exists
 local home = os.getenv("HOME")
 
+-- remove start screen
+opt.shortmess:append("I")
+
 opt.hlsearch = false
 opt.incsearch = true
 opt.conceallevel = 2

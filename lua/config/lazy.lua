@@ -31,6 +31,12 @@ require("lazy").setup({
 			{ "<M-l>", "<cmd>TmuxNavigateRight<cr>" },
 			{ "<M-\\>", "<cmd>TmuxNavigatePrevious<cr>" },
 		},
+		config = function()
+			vim.keymap.del("n", "<C-h>", {})
+			vim.keymap.del("n", "<C-j>", {})
+			vim.keymap.del("n", "<C-k>", {})
+			vim.keymap.del("n", "<C-l>", {})
+		end,
 	},
 
 	{

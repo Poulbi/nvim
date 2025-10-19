@@ -29,6 +29,10 @@ map("n", " q", "<cmd>q!<cr>", { noremap = true })
 map("n", " Q", "<cmd>qa!<cr>", { noremap = true })
 map("n", "!", "<cmd>sp<CR><cmd>term<CR>", { desc = "Open terminal" })
 map("n", "<M-b>", "<cmd>write<cr><cmd>make<cr>", { desc = "Make" })
+map("n", "<M-|>", "<cmd>bn<cr>", { noremap = true })
+map("n", "<M-\\>", "<cmd>bp<cr>", { noremap = true })
+map("n", " bd", "<cmd>bd<cr>", { noremap = true })
+map("n", " bl", "<cmd>buffers<cr>", { noremap = true })
 
 -- better indenting
 map("v", "<", "<gv")
@@ -49,14 +53,13 @@ map({ "n", "v" }, " P", [["+p]])
 local hidden = true -- flag
 vim.api.nvim_create_user_command("Hide", function()
 	hidden = hidden == false
-	vim.opt.showmode = hidden
-	vim.opt.ruler = hidden
-	vim.opt.showcmd = hidden
-	vim.opt.laststatus = hidden and 2 or 0
- vim.cmd("normal :<CR>")
+	vim.opt.showmode = false
+	vim.opt.ruler = false
+	vim.opt.showcmd = false
+	vim.opt.laststatus = false and 2 or 0
+	vim.cmd("normal :<CR>")
 end, {})
 vim.cmd("Hide")
-map("n", " b", "<cmd>Hide<cr>")
 
 vim.api.nvim_create_user_command("ThisDir", function()
 	vim.api.nvim_paste(
@@ -92,20 +95,18 @@ map("n", " sl", ":s/\\<<C-R><C-W>\\>//g<Left><Left>", { desc = "Replace word und
 
 -- From https://github.com/neovim/neovim/discussions/35081
 map("v", " sf", function()
- local s_start = vim.fn.getpos "."
-   local s_end = vim.fn.getpos "v"
-   local lines = vim.fn.getregion(s_start,s_end)
- local selection = lines
-   local text = vim.fn.escape(selection[1], [[\/]])
-   for i = 2, #selection do
-      text = text .. '\\n' .. vim.fn.escape(selection[i], [[\/]])
-   end
-   local clear_selection =
-      vim.api.nvim_replace_termcodes("<C-u>", true, false, true)
-   local double_left =
-      vim.api.nvim_replace_termcodes("<Left><Left>", true, false, true)
-   local keys_to_feed = ":" .. clear_selection .. "%s/" .. text .. "//gc" .. double_left
-   vim.fn.feedkeys(keys_to_feed)
+	local s_start = vim.fn.getpos(".")
+	local s_end = vim.fn.getpos("v")
+	local lines = vim.fn.getregion(s_start, s_end)
+	local selection = lines
+	local text = vim.fn.escape(selection[1], [[\/]])
+	for i = 2, #selection do
+		text = text .. "\\n" .. vim.fn.escape(selection[i], [[\/]])
+	end
+	local clear_selection = vim.api.nvim_replace_termcodes("<C-u>", true, false, true)
+	local double_left = vim.api.nvim_replace_termcodes("<Left><Left>", true, false, true)
+	local keys_to_feed = ":" .. clear_selection .. "%s/" .. text .. "//gc" .. double_left
+	vim.fn.feedkeys(keys_to_feed)
 end, { desc = "Replace selected text through file" })
 
 map("n", "]q", "<cmd>cn<cr>", { desc = "Next item in quickfix", silent = true })
