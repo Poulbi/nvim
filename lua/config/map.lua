@@ -61,23 +61,14 @@ vim.api.nvim_create_user_command("Hide", function()
 end, {})
 vim.cmd("Hide")
 
-vim.api.nvim_create_user_command("ScriptDirectory", function()
-	vim.api.nvim_paste(
-		[[
-ScriptDirectory="$(dirname "$(readlink -f "$0")")"
-cd "$ScriptDirectory"
-  ]],
-		false,
-		-1
-	)
-end, {})
-
 map("n", " x", "!cx %", { desc = "Toggle file as executable" })
 map("n", " w", "<cmd>write<cr>", { noremap = true })
 map("n", ",s", function()
 	vim.cmd.source()
 	print("Sourced.")
 end, { noremap = true })
+
+map("n", " tt", function() vim.fn.feedkeys(":r ~/.config/nvim/templates/") end, {})
 
 -- spelling
 map("n", " ts", function()
