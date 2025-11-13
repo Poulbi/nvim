@@ -61,11 +61,11 @@ vim.api.nvim_create_user_command("Hide", function()
 end, {})
 vim.cmd("Hide")
 
-vim.api.nvim_create_user_command("ThisDir", function()
+vim.api.nvim_create_user_command("ScriptDirectory", function()
 	vim.api.nvim_paste(
 		[[
-ThisDir="$(dirname "$(readlink -f "$0")")"
-cd "$ThisDir"
+ScriptDirectory="$(dirname "$(readlink -f "$0")")"
+cd "$ScriptDirectory"
   ]],
 		false,
 		-1
