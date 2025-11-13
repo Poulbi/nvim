@@ -104,8 +104,8 @@ map("v", " sf", function()
 		text = text .. "\\n" .. vim.fn.escape(selection[i], [[\/]])
 	end
 	local clear_selection = vim.api.nvim_replace_termcodes("<C-u>", true, false, true)
-	local double_left = vim.api.nvim_replace_termcodes("<Left><Left>", true, false, true)
-	local keys_to_feed = ":" .. clear_selection .. "%s/" .. text .. "//gc" .. double_left
+	local left = vim.api.nvim_replace_termcodes("<Left><Left><Left>", true, false, true)
+	local keys_to_feed = ":" .. clear_selection .. "%s/" .. text .. "//gc" .. left
 	vim.fn.feedkeys(keys_to_feed)
 end, { desc = "Replace selected text through file" })
 
