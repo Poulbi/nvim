@@ -72,6 +72,8 @@ else
 	opt.titlestring = cwd .. " -> %t"
 end
 
+opt.makeprg = "./build.sh"
+
 -- Highlighting
 vim.api.nvim_set_hl(0, "matchNotes", { fg = require("nord.colors").palette.frost.ice })
 vim.fn.matchadd("matchNotes", "NOTE\\((.*)\\)\\?:")

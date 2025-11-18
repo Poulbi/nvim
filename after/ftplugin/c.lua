@@ -22,9 +22,4 @@ vim.opt.commentstring = "// %s"
 -- disable indent in switch statement
 vim.opt.cinoptions = "l1"
 
-local projects = require("config.projects")
-if projects and not projects.InProject then
-	vim.bo.makeprg = "./build.sh"
-end
-
 vim.cmd("TSDisable indent")
