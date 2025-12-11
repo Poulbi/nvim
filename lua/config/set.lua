@@ -36,17 +36,17 @@ opt.splitbelow = true
 opt.splitright = true
 opt.clipboard = "unnamed"
 
-opt.showmode = false
-opt.showmatch = false
+-- opt.laststatus = 2
+-- opt.showmode = false
+-- opt.showmatch = false
+-- opt.showcmd = true
 opt.cursorline = true
 opt.textwidth = 0
 -- opt.colorcolumn = "102"
 opt.termguicolors = true
 opt.ruler = true
-opt.showcmd = true
 opt.wildmenu = true
 opt.mouse = ""
-opt.laststatus = 2
 opt.history = 200
 
 -- opt.encoding = "utf-8"

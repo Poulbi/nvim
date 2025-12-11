@@ -52,18 +52,6 @@ map({ "n", "v" }, " y", [["+y]])
 map("n", " Y", [["+Y]])
 map({ "n", "v" }, " P", [["+p]])
 
--- hide all
-local hidden = true -- flag
-vim.api.nvim_create_user_command("Hide", function()
-	hidden = hidden == false
-	vim.opt.showmode = false
-	vim.opt.ruler = false
-	vim.opt.showcmd = false
-	vim.opt.laststatus = false and 2 or 0
-	vim.cmd("normal :<CR>")
-end, {})
-vim.cmd("Hide")
-
 map("n", " x", "!cx %", { desc = "Toggle file as executable" })
 map("n", " w", "<cmd>write<cr>", { noremap = true })
 map("n", ",s", function()
