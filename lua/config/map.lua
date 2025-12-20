@@ -104,3 +104,16 @@ vim.api.nvim_create_user_command("Scratch", function()
     setlocal noswapfile
     ]])
 end, {})
+
+vim.keymap.set("n", " m", function()
+	local word = vim.fn.expand("<cword>")
+	local shell_command = "man -s 3 "..word.." | col -bx | grep '#include' -m 1 | sed 's/^ *//' | tr -d '\\n'"
+
+	local res = vim.system({ "sh", "-c", shell_command }, { text = true }):wait()
+
+	if res.code == 0 then
+		local output = res.stdout
+		local text = "ggI" .. output .. "\n<esc><c-o>"
+		vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(text, true, false, true), "n", true)
+	end
+end, {})
